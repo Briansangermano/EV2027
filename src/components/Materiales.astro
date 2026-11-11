@@ -1,0 +1,216 @@
+---
+import { evento } from '../data/contenido';
+
+const iconos: Record<string, string> = {
+  biblia: '<path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v16H6.5A2.5 2.5 0 0 0 4 21.5V5.5z"/><path d="M4 18.5A2.5 2.5 0 0 1 6.5 16H19"/><path d="M12 6v7M9.5 8.5h5"/>',
+  himno: '<path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/>',
+  bosquejo: '<path d="M6 3h8l5 5v13H6z"/><path d="M14 3v5h5"/><path d="M9.5 12h6M9.5 15.5h6M9.5 19h3.5"/>',
+  cuaderno: '<path d="M4 5a2 2 0 0 1 2-2h11v18H6a2 2 0 0 1-2-2z"/><path d="M8 3v18"/><path d="M12 8h3M12 11h3"/>',
+  agua: '<path d="M12 3s6 6.3 6 11a6 6 0 0 1-12 0c0-4.7 6-11 6-11z"/><path d="M9.5 14.5a2.5 2.5 0 0 0 2.5 2.5"/>',
+};
+
+const svg = (name: string) =>
+  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${iconos[name] ?? ''}</svg>`;
+---
+
+<section class="section section--noche materiales" id="materiales">
+  <div class="contours" aria-hidden="true"></div>
+  <div class="materiales__glow" aria-hidden="true"></div>
+
+  <div class="container">
+    <div class="materiales__head">
+      <div class="section-head reveal">
+        <p class="eyebrow">Materiales para las reuniones</p>
+        <h2 class="h2">Lo que no puede <em>faltar</em></h2>
+        <p class="lead">
+          Prepará tu mochila con estos elementos. Los bosquejos se entregan al llegar al predio.
+        </p>
+      </div>
+
+      <div class="materiales__stamp reveal" aria-hidden="true">
+        <span class="materiales__stamp-line"></span>
+        <span>Checklist</span>
+      </div>
+    </div>
+
+    <ul class="mat__grid" data-stagger="90">
+      {evento.materiales.map((m, i) => (
+        <li class="mat reveal" data-spotlight>
+          <span class="mat__num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+          <span class="mat__icon" aria-hidden="true">
+            <Fragment set:html={svg(m.icono)} />
+          </span>
+          <span class="mat__name">{m.nombre}</span>
+          <span class="mat__detail">{m.detalle}</span>
+          <span class="mat__check" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7" /></svg>
+          </span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .materiales {
+    position: relative;
+    overflow: hidden;
+  }
+  .materiales__glow {
+    position: absolute;
+    width: 640px;
+    height: 640px;
+    right: -200px;
+    top: -220px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(234, 181, 77, 0.09), transparent 65%);
+    pointer-events: none;
+  }
+
+  .materiales__head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-bottom: clamp(2rem, 4vw, 3rem);
+  }
+  .materiales__head .section-head {
+    margin-bottom: 0;
+  }
+
+  .materiales__stamp {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--salvia);
+    padding-bottom: 0.4rem;
+  }
+  .materiales__stamp-line {
+    width: 44px;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.5;
+  }
+
+  .mat__grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 0.85rem;
+  }
+
+  .mat {
+    position: relative;
+    display: grid;
+    align-content: start;
+    gap: 0.55rem;
+    padding: 1.3rem 1.2rem 1.4rem;
+    border-radius: var(--r-md);
+    border: 1px solid rgba(157, 184, 154, 0.16);
+    background: rgba(255, 255, 255, 0.028);
+    overflow: hidden;
+    transition: transform 0.5s var(--ease), border-color 0.5s var(--ease), background-color 0.5s var(--ease);
+  }
+  .mat::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(220px circle at var(--sx, 50%) var(--sy, 30%), rgba(234, 181, 77, 0.13), transparent 62%);
+    opacity: 0;
+    transition: opacity 0.45s var(--ease);
+    pointer-events: none;
+  }
+  .mat:hover {
+    transform: translateY(-5px);
+    border-color: rgba(234, 181, 77, 0.32);
+    background: rgba(255, 255, 255, 0.05);
+  }
+  .mat:hover::after {
+    opacity: 1;
+  }
+
+  .mat__num {
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    color: var(--verde-2);
+    letter-spacing: 0.05em;
+  }
+  .mat__icon {
+    display: grid;
+    place-items: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 13px;
+    background: rgba(234, 181, 77, 0.09);
+    border: 1px solid rgba(234, 181, 77, 0.16);
+    color: var(--sol);
+    margin: 0.2rem 0 0.3rem;
+    transition: transform 0.5s var(--ease), background-color 0.4s;
+  }
+  .mat__icon :global(svg) {
+    width: 24px;
+    height: 24px;
+  }
+  .mat:hover .mat__icon {
+    transform: translateY(-3px) rotate(-3deg);
+    background: rgba(234, 181, 77, 0.16);
+  }
+  .mat__name {
+    font-family: var(--font-display);
+    font-size: 1.02rem;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    color: var(--crema);
+  }
+  .mat__detail {
+    font-size: 0.78rem;
+    color: #8fa693;
+    line-height: 1.45;
+  }
+  .mat__check {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.1rem;
+    display: grid;
+    place-items: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 1px solid rgba(157, 184, 154, 0.25);
+    color: var(--sol);
+    opacity: 0.5;
+    transition: opacity 0.4s, background-color 0.4s, border-color 0.4s, transform 0.4s var(--ease);
+  }
+  .mat__check svg {
+    width: 12px;
+    height: 12px;
+  }
+  .mat:hover .mat__check {
+    opacity: 1;
+    transform: scale(1.08);
+    background: rgba(234, 181, 77, 0.16);
+    border-color: rgba(234, 181, 77, 0.4);
+  }
+
+  @media (max-width: 1000px) {
+    .mat__grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  @media (max-width: 700px) {
+    .materiales__stamp {
+      display: none;
+    }
+    .mat__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (max-width: 460px) {
+    .mat__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

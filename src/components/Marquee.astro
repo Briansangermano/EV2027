@@ -1,0 +1,43 @@
+---
+import { evento } from '../data/contenido';
+
+const frases = [
+  evento.referencia,
+  'El testimonio de Dios',
+  evento.fechas.texto,
+  evento.lugar.nombre,
+  'La economía de Dios',
+  `${evento.lugar.ciudad}, ${evento.lugar.provincia}`,
+];
+---
+
+<div class="band" aria-hidden="true">
+  <div class="marquee">
+    <div class="marquee__track">
+      {[0, 1].map(() => (
+        <div class="marquee__group">
+          {frases.map((f) => (
+            <>
+              <span class="marquee__item">{f}</span>
+              <span class="marquee__star">✦</span>
+            </>
+          ))}
+        </div>
+      ))}
+    </div>
+  </div>
+</div>
+
+<style>
+  .band {
+    position: relative;
+    z-index: 2;
+    padding-block: 1.8rem;
+    background: var(--noche);
+    overflow: hidden;
+  }
+  .band :global(.marquee) {
+    transform: rotate(-1.4deg) scale(1.04);
+    border-color: rgba(243, 240, 230, 0.12);
+  }
+</style>

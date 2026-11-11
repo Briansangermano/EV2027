@@ -1,0 +1,472 @@
+---
+import farTrees from '../assets/treeline-far.svg?raw';
+import midTrees from '../assets/treeline-mid.svg?raw';
+import nearTrees from '../assets/treeline-near.svg?raw';
+import { evento, enlaces } from '../data/contenido';
+
+const inicio = new Date(evento.inicioISO);
+const yaPaso = inicio.getTime() <= Date.now();
+
+const fireflies = Array.from({ length: 20 }, (_, i) => ({
+  x: (i * 41 + 7) % 100,
+  y: 18 + ((i * 57) % 68),
+  dur: 7 + (i % 6) * 1.6,
+  delay: -((i * 1.7) % 9),
+  size: 2 + (i % 3) * 1.3,
+}));
+
+const palabras = [
+  { text: 'El', italic: false },
+  { text: 'testimonio', italic: false },
+  { text: 'de', italic: false },
+  { text: 'Dios', italic: false },
+  { text: 'lo', italic: true, br: true },
+  { text: 'revela', italic: true },
+  { text: 'a', italic: true },
+  { text: 'Él', italic: true },
+  { text: 'ante', italic: false, br: true },
+  { text: 'Su', italic: false },
+  { text: 'pueblo', italic: false },
+];
+---
+
+<section class="hero" id="inicio">
+  <div class="hero__bg" aria-hidden="true">
+    <div class="hero__glow hero__glow--warm"></div>
+    <div class="hero__glow hero__glow--cool"></div>
+    <div class="contours hero__contours"></div>
+
+    <div class="hero__fireflies">
+      {fireflies.map((f) => (
+        <span
+          class="firefly"
+          style={`--x:${f.x}%;--y:${f.y}%;--dur:${f.dur}s;--delay:${f.delay}s;--size:${f.size}px`}
+        ></span>
+      ))}
+    </div>
+
+    <div class="hero__trees">
+      <div class="tl-wrap tl-wrap--far" data-parallax data-speed="0.04">
+        <Fragment set:html={farTrees} />
+      </div>
+      <div class="tl-wrap tl-wrap--mid" data-parallax data-speed="0.075">
+        <Fragment set:html={midTrees} />
+      </div>
+      <div class="tl-wrap tl-wrap--near" data-parallax data-speed="0.115">
+        <Fragment set:html={nearTrees} />
+      </div>
+    </div>
+  </div>
+
+  <div class="container hero__inner">
+    <p class="hero__kicker">
+      <span class="badge"><span class="badge__dot"></span>{evento.etiqueta} · {evento.referencia}</span>
+    </p>
+
+    <h1 class="hero__title">
+      {palabras.map((p, i) => (
+        <>
+          {p.br && <br />}
+          <span class="w" style={`--w:${i}`}>
+            {p.italic ? <em>{p.text}</em> : p.text}
+          </span>{' '}
+        </>
+      ))}
+    </h1>
+
+    <p class="hero__sub">{evento.antetitulo}</p>
+
+    <div class="hero__meta">
+      <span class="hero__meta-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3" /><path d="M8 3v4M16 3v4M3 10h18" /></svg>
+        {evento.fechas.textoAnio}
+      </span>
+      <span class="hero__meta-sep" aria-hidden="true"></span>
+      <span class="hero__meta-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M12 21s7-5.2 7-11a7 7 0 1 0-14 0c0 5.8 7 11 7 11z" /><circle cx="12" cy="10" r="2.6" /></svg>
+        {evento.lugar.nombre} · {evento.lugar.ciudad}
+      </span>
+    </div>
+
+    {!yaPaso && (
+      <div class="countdown" data-countdown={evento.inicioISO}>
+        <span class="sr-only">Cuenta regresiva para el inicio de la conferencia</span>
+        <div class="countdown__grid" aria-hidden="true">
+          <div class="cd">
+            <span class="cd__num" data-unit="dias">00</span>
+            <span class="cd__label">días</span>
+          </div>
+          <span class="cd__sep">:</span>
+          <div class="cd">
+            <span class="cd__num" data-unit="horas">00</span>
+            <span class="cd__label">horas</span>
+          </div>
+          <span class="cd__sep">:</span>
+          <div class="cd">
+            <span class="cd__num" data-unit="min">00</span>
+            <span class="cd__label">min</span>
+          </div>
+          <span class="cd__sep">:</span>
+          <div class="cd">
+            <span class="cd__num" data-unit="seg">00</span>
+            <span class="cd__label">seg</span>
+          </div>
+        </div>
+        <p class="countdown__msg" data-countdown-message hidden>La conferencia ya comenzó</p>
+      </div>
+    )}
+
+    <div class="hero__actions">
+      <a class="btn btn--sol" href="#inscripcion">
+        Quiero inscribirme
+        <span class="btn__icon" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+        </span>
+      </a>
+      <a class="btn btn--ghost" href={enlaces.mapa} target="_blank" rel="noopener">
+        Ver ubicación
+        <span class="btn__icon" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-5.2 7-11a7 7 0 1 0-14 0c0 5.8 7 11 7 11z" /><circle cx="12" cy="10" r="2.6" /></svg>
+        </span>
+      </a>
+    </div>
+  </div>
+
+  <a class="hero__scroll" href="#fechas" aria-label="Bajar a fechas y lugar">
+    <span>Deslizá</span>
+    <span class="hero__scroll-line" aria-hidden="true"></span>
+  </a>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    padding: 7.5rem 0 clamp(6rem, 12vh, 9rem);
+    overflow: hidden;
+    background: var(--noche);
+    color: var(--on-dark);
+    isolation: isolate;
+  }
+
+  /* --- Fondo --- */
+  .hero__bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(180deg, #07160e 0%, #0a2015 45%, #0c2619 100%);
+  }
+  .hero__glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(70px);
+    pointer-events: none;
+  }
+  .hero__glow--warm {
+    width: 52vw;
+    height: 52vw;
+    max-width: 720px;
+    max-height: 720px;
+    left: 50%;
+    top: 8%;
+    transform: translateX(-50%);
+    background: radial-gradient(circle, rgba(234, 181, 77, 0.16), transparent 65%);
+    animation: glow-pulse 11s ease-in-out infinite;
+  }
+  .hero__glow--cool {
+    width: 60vw;
+    height: 60vw;
+    max-width: 880px;
+    max-height: 880px;
+    right: -12%;
+    bottom: -10%;
+    background: radial-gradient(circle, rgba(62, 122, 79, 0.24), transparent 66%);
+    animation: drift 26s ease-in-out infinite alternate;
+  }
+  .hero__contours {
+    opacity: 0.05;
+    mask-image: radial-gradient(ellipse at 50% 30%, #000 10%, transparent 72%);
+    -webkit-mask-image: radial-gradient(ellipse at 50% 30%, #000 10%, transparent 72%);
+  }
+
+  .hero__fireflies {
+    position: absolute;
+    inset: 0;
+  }
+  .firefly {
+    position: absolute;
+    left: var(--x);
+    top: var(--y);
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+    background: var(--sol-2);
+    box-shadow: 0 0 8px 2px rgba(234, 181, 77, 0.45);
+    opacity: 0;
+    animation: firefly var(--dur) ease-in-out var(--delay) infinite;
+  }
+  @keyframes firefly {
+    0%,
+    100% {
+      opacity: 0;
+      transform: translate3d(0, 0, 0) scale(0.6);
+    }
+    35% {
+      opacity: 0.85;
+    }
+    50% {
+      opacity: 0.35;
+      transform: translate3d(10px, -26px, 0) scale(1);
+    }
+    75% {
+      opacity: 0.8;
+    }
+  }
+
+  .hero__trees {
+    position: absolute;
+    inset: auto 0 -2px 0;
+    height: min(46vh, 420px);
+    min-height: 240px;
+    pointer-events: none;
+  }
+  .tl-wrap {
+    position: absolute;
+    inset: 0;
+  }
+  .tl-wrap :global(svg) {
+    position: absolute;
+    bottom: 0;
+    left: -5%;
+    width: 110%;
+    height: 100%;
+    will-change: transform;
+  }
+  .tl-wrap--far :global(svg) {
+    fill: #123c27;
+    opacity: 0.55;
+  }
+  .tl-wrap--mid :global(svg) {
+    fill: #0c2b1b;
+    opacity: 0.9;
+  }
+  .tl-wrap--near :global(svg) {
+    fill: #061710;
+  }
+
+  /* --- Contenido --- */
+  .hero__inner {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.35rem;
+  }
+
+  .hero__kicker {
+    animation: fade-up 0.9s var(--ease) both;
+  }
+
+  .hero__title {
+    font-size: clamp(2.35rem, 6.6vw, 5.3rem);
+    line-height: 0.98;
+    letter-spacing: -0.035em;
+    max-width: 20ch;
+    margin-top: 0.2rem;
+  }
+  .hero__title .w {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(0.42em);
+    filter: blur(6px);
+    animation: word-in 1s var(--ease) forwards;
+    animation-delay: calc(var(--w) * 85ms + 180ms);
+  }
+  .hero__title em {
+    font-style: italic;
+    font-variation-settings: 'SOFT' 70, 'WONK' 1;
+    color: var(--sol);
+  }
+  @keyframes word-in {
+    to {
+      opacity: 1;
+      transform: none;
+      filter: blur(0);
+    }
+  }
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  .hero__sub {
+    max-width: 44ch;
+    font-size: clamp(0.95rem, 1.1vw, 1.08rem);
+    line-height: 1.6;
+    color: var(--on-dark-soft);
+    animation: fade-up 0.9s var(--ease) 0.9s both;
+  }
+
+  .hero__meta {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.85rem;
+    margin-top: 0.2rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--crema);
+    animation: fade-up 0.9s var(--ease) 1.05s both;
+  }
+  .hero__meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .hero__meta-item svg {
+    width: 17px;
+    height: 17px;
+    color: var(--sol);
+  }
+  .hero__meta-sep {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--salvia);
+    opacity: 0.6;
+  }
+
+  /* --- Countdown --- */
+  .countdown {
+    margin-top: 0.4rem;
+    animation: fade-up 0.9s var(--ease) 1.15s both;
+  }
+  .countdown__grid {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.55rem 0.9rem;
+    border-radius: 18px;
+    border: 1px solid rgba(157, 184, 154, 0.18);
+    background: rgba(255, 255, 255, 0.035);
+    backdrop-filter: blur(6px);
+  }
+  .cd {
+    display: grid;
+    justify-items: center;
+    min-width: 3.5rem;
+    padding: 0.15rem 0.4rem;
+  }
+  .cd__num {
+    font-family: var(--font-display);
+    font-variant-numeric: tabular-nums;
+    font-size: clamp(1.45rem, 2.6vw, 1.85rem);
+    line-height: 1;
+    color: var(--crema);
+    display: inline-block;
+  }
+  .cd__num.is-flipping {
+    animation: flip 0.28s var(--ease);
+  }
+  @keyframes flip {
+    0% {
+      opacity: 0.55;
+      transform: translateY(-26%);
+    }
+    100% {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  .cd__label {
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--salvia);
+    margin-top: 0.25rem;
+  }
+  .cd__sep {
+    font-family: var(--font-display);
+    color: var(--verde-2);
+    transform: translateY(-6px);
+  }
+  .countdown__msg {
+    margin-top: 0.6rem;
+    font-weight: 700;
+    color: var(--sol);
+  }
+
+  /* --- CTA --- */
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 0.9rem;
+    animation: fade-up 0.9s var(--ease) 1.25s both;
+  }
+
+  /* --- Scroll cue --- */
+  .hero__scroll {
+    position: absolute;
+    left: 50%;
+    bottom: 1.6rem;
+    z-index: 3;
+    transform: translateX(-50%);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--salvia);
+    text-decoration: none;
+    animation: fade-up 1s var(--ease) 1.6s both;
+  }
+  .hero__scroll-line {
+    width: 1px;
+    height: 34px;
+    background: linear-gradient(180deg, var(--salvia), transparent);
+    animation: bob 2.4s ease-in-out infinite;
+  }
+
+  @media (max-width: 640px) {
+    .hero {
+      padding-top: 6.5rem;
+      min-height: 100svh;
+    }
+    .hero__title {
+      font-size: clamp(2.1rem, 9.5vw, 3rem);
+      max-width: 16ch;
+    }
+    .hero__meta {
+      gap: 0.5rem;
+      font-size: 0.82rem;
+    }
+    .hero__meta-sep {
+      display: none;
+    }
+    .cd {
+      min-width: 2.9rem;
+    }
+    .hero__actions .btn {
+      width: 100%;
+    }
+    .hero__scroll {
+      display: none;
+    }
+  }
+</style>

@@ -1,0 +1,399 @@
+---
+import { evento, enlaces } from '../data/contenido';
+
+const inicio = new Date(evento.inicioISO);
+const fin = new Date(evento.finISO);
+const dias = Math.round((fin.getTime() - inicio.getTime()) / 86400000) + 1;
+const palabras: Record<number, string> = {
+  2: 'Dos',
+  3: 'Tres',
+  4: 'Cuatro',
+  5: 'Cinco',
+  6: 'Seis',
+  7: 'Siete',
+  8: 'Ocho',
+};
+const tituloDias = palabras[dias] ?? String(dias);
+
+const primeraComida = evento.comidas.inicio.charAt(0).toLowerCase() + evento.comidas.inicio.slice(1);
+const ultimaComida = evento.comidas.fin.charAt(0).toLowerCase() + evento.comidas.fin.slice(1);
+---
+
+<section class="section section--crema fechas" id="fechas">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">Cuándo y dónde</p>
+      <h2 class="h2">{tituloDias} días en <em>el bosque</em></h2>
+      <p class="lead">
+        Nos reunimos para considerar el testimonio de Dios en Éxodo. Anotá las fechas y coordiná
+        tu viaje con tu localidad.
+      </p>
+    </div>
+
+    <!-- Tarjeta de fechas -->
+    <div class="fechas-card reveal reveal--scale">
+      <div class="fecha">
+        <span class="fecha__dia">{evento.fechas.inicio.dia}</span>
+        <span class="fecha__num">{evento.fechas.inicio.numero}</span>
+        <span class="fecha__mes">{evento.fechas.inicio.mes}</span>
+      </div>
+
+      <div class="fecha__line" aria-hidden="true">
+        <span class="fecha__dot"></span>
+        <span class="fecha__track"></span>
+        <span class="fecha__dot"></span>
+      </div>
+
+      <div class="fecha">
+        <span class="fecha__dia">{evento.fechas.fin.dia}</span>
+        <span class="fecha__num">{evento.fechas.fin.numero}</span>
+        <span class="fecha__mes">{evento.fechas.fin.mes}</span>
+      </div>
+
+      <div class="fecha__aside">
+        <span class="fecha__badge">Inscripción abierta</span>
+        <span class="fecha__year">{evento.anio}</span>
+      </div>
+    </div>
+
+    <div class="fechas__grid">
+      <!-- Mapa -->
+      <div class="map-card reveal reveal--left">
+        <div class="map-card__frame">
+          <iframe
+            src={enlaces.mapaEmbed}
+            title={`Mapa de ${evento.lugar.nombre} en ${evento.lugar.ciudad}`}
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen
+          ></iframe>
+          <div class="map-card__veil" aria-hidden="true"></div>
+        </div>
+        <div class="map-card__foot">
+          <div>
+            <p class="map-card__name">{evento.lugar.nombre}</p>
+            <p class="map-card__addr">{evento.lugar.textoCompleto}</p>
+          </div>
+          <a class="btn btn--outline btn--sm" href={enlaces.mapa} target="_blank" rel="noopener">
+            Abrir en Maps
+            <span class="btn__icon" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8" /></svg>
+            </span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Horario -->
+      <div class="horario reveal reveal--right">
+        <div class="horario__head">
+          <span class="eyebrow">Horario</span>
+          <h3 class="h3">Cómo se reparten los días</h3>
+        </div>
+
+        <ul class="horario__list">
+          {evento.horario.map((h) => (
+            <li>
+              <span class="horario__dia">{h.dia}</span>
+              <span class="horario__detalle">{h.detalle}</span>
+            </li>
+          ))}
+        </ul>
+
+        <p class="horario__nota">{evento.horarioNota}</p>
+
+        <div class="horario__llegada">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M4 17V7a2 2 0 0 1 2-2h9l5 5v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z" /><path d="M15 5v5h5" /><path d="M8 13h8M8 16h5" /></svg>
+          <p>
+            Las comidas comienzan con el <strong>{primeraComida}</strong> y terminan con el
+            <strong>{ultimaComida}</strong>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .fechas {
+    overflow: hidden;
+  }
+
+  /* --- Tarjeta de fechas --- */
+  .fechas-card {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto 1fr auto auto;
+    align-items: center;
+    gap: clamp(1rem, 4vw, 3rem);
+    padding: clamp(1.6rem, 4vw, 2.8rem);
+    border-radius: var(--r-lg);
+    background: linear-gradient(120deg, var(--noche) 0%, var(--musgo) 60%, var(--noche-2) 100%);
+    color: var(--on-dark);
+    box-shadow: var(--shadow-lift);
+    overflow: hidden;
+  }
+  .fechas-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('/contours.svg');
+    background-size: 900px 900px;
+    opacity: 0.07;
+    pointer-events: none;
+  }
+  .fechas-card::after {
+    content: '';
+    position: absolute;
+    width: 340px;
+    height: 340px;
+    right: -90px;
+    top: -120px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(234, 181, 77, 0.18), transparent 65%);
+    pointer-events: none;
+  }
+
+  .fecha {
+    position: relative;
+    display: grid;
+    justify-items: start;
+    line-height: 0.9;
+  }
+  .fecha__dia {
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--salvia);
+    margin-bottom: 0.35rem;
+  }
+  .fecha__num {
+    font-family: var(--font-display);
+    font-size: clamp(3.4rem, 8vw, 6.2rem);
+    font-weight: 500;
+    letter-spacing: -0.05em;
+    font-variant-numeric: lining-nums;
+    color: var(--crema);
+  }
+  .fecha__mes {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(1rem, 1.8vw, 1.35rem);
+    color: var(--sol);
+    margin-top: 0.3rem;
+  }
+
+  .fecha__line {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 80px;
+  }
+  .fecha__track {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(157, 184, 154, 0.15), var(--salvia), rgba(157, 184, 154, 0.15));
+  }
+  .fecha__dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--sol);
+    box-shadow: 0 0 0 4px rgba(234, 181, 77, 0.12);
+  }
+
+  .fecha__aside {
+    position: relative;
+    display: grid;
+    justify-items: end;
+    gap: 0.5rem;
+    padding-left: clamp(1rem, 3vw, 2.4rem);
+    border-left: 1px solid rgba(243, 240, 230, 0.14);
+  }
+  .fecha__badge {
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--noche);
+    background: var(--sol);
+    padding: 0.35rem 0.7rem;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .fecha__year {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    color: var(--salvia);
+  }
+
+  /* --- Grid mapa + horario --- */
+  .fechas__grid {
+    display: grid;
+    grid-template-columns: 1.25fr 1fr;
+    gap: clamp(1rem, 2.4vw, 1.6rem);
+    margin-top: clamp(1rem, 2.4vw, 1.6rem);
+  }
+
+  .map-card {
+    display: flex;
+    flex-direction: column;
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    background: #fffdf7;
+    border: 1px solid rgba(16, 36, 26, 0.09);
+    box-shadow: var(--shadow-soft);
+  }
+  .map-card__frame {
+    position: relative;
+    flex: 1;
+    min-height: 320px;
+    background: var(--crema-2);
+  }
+  .map-card__frame iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    filter: saturate(0.82) contrast(1.02) sepia(0.08);
+  }
+  .map-card__veil {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(180deg, rgba(7, 22, 14, 0.1) 0%, transparent 22%, transparent 74%, rgba(7, 22, 14, 0.28) 100%);
+  }
+  .map-card__foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.1rem 1.3rem;
+    background: #fffdf7;
+  }
+  .map-card__name {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+  .map-card__addr {
+    font-size: 0.84rem;
+    color: var(--ink-mute);
+  }
+
+  .horario {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    padding: clamp(1.4rem, 3vw, 2rem);
+    border-radius: var(--r-lg);
+    background: #fffdf7;
+    border: 1px solid rgba(16, 36, 26, 0.09);
+    box-shadow: var(--shadow-soft);
+  }
+  .horario__head {
+    display: grid;
+    gap: 0.6rem;
+  }
+  .horario__list {
+    display: grid;
+    gap: 0;
+  }
+  .horario__list li {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.85rem 0;
+    border-bottom: 1px dashed rgba(16, 36, 26, 0.13);
+  }
+  .horario__list li:last-child {
+    border-bottom: 0;
+  }
+  .horario__dia {
+    font-weight: 700;
+    font-size: 0.92rem;
+  }
+  .horario__detalle {
+    font-size: 0.85rem;
+    color: var(--ink-mute);
+    text-align: right;
+  }
+  .horario__nota {
+    font-size: 0.8rem;
+    color: var(--ink-mute);
+    font-style: italic;
+  }
+  .horario__llegada {
+    display: flex;
+    gap: 0.75rem;
+    padding: 0.95rem 1rem;
+    border-radius: var(--r-sm);
+    background: var(--crema-2);
+    margin-top: auto;
+  }
+  .horario__llegada svg {
+    flex: 0 0 auto;
+    width: 20px;
+    height: 20px;
+    color: var(--verde);
+    margin-top: 2px;
+  }
+  .horario__llegada p {
+    font-size: 0.84rem;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+
+  @media (max-width: 980px) {
+    .fechas__grid {
+      grid-template-columns: 1fr;
+    }
+    .map-card__frame {
+      min-height: 300px;
+      aspect-ratio: 16 / 10;
+    }
+  }
+  @media (max-width: 760px) {
+    .fechas-card {
+      grid-template-columns: 1fr 1fr;
+      row-gap: 1.6rem;
+      justify-content: stretch;
+    }
+    .fecha__line {
+      display: none;
+    }
+    .fecha__aside {
+      grid-column: 1 / -1;
+      grid-row: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      justify-items: stretch;
+      padding-left: 0;
+      border-left: 0;
+      padding-top: 1.2rem;
+      border-top: 1px solid rgba(243, 240, 230, 0.14);
+      width: 100%;
+    }
+    .fecha {
+      justify-items: start;
+    }
+  }
+  @media (max-width: 640px) {
+    .map-card__foot {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .horario__list li {
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+    .horario__detalle {
+      text-align: left;
+    }
+  }
+</style>

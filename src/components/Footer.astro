@@ -1,0 +1,144 @@
+---
+import { evento, enlaces } from '../data/contenido';
+---
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <span class="footer__mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" fill="none">
+          <path d="M16 4l4.6 8h-2.6l3.8 6.6h-3l4 7H17v3h-2v-3h-7l4-7h-3l3.8-6.6H10L16 4z" fill="currentColor" />
+        </svg>
+      </span>
+      <div>
+        <p class="footer__title">Conferencia de jóvenes</p>
+        <p class="footer__sub">{evento.referencia} · {evento.fechas.textoAnio}</p>
+      </div>
+    </div>
+
+    <nav class="footer__links" aria-label="Enlaces del pie">
+      <a href="#fechas">Fechas y lugar</a>
+      <a href="#pago">Pago</a>
+      <a href="#inscripcion">Inscripción</a>
+      <a href="#materiales">Materiales</a>
+      <a href="#comidas">Comidas</a>
+    </nav>
+
+    <div class="footer__contact">
+      <a href={enlaces.whatsapp} target="_blank" rel="noopener">{evento.contacto.whatsappVisible}</a>
+      <a href={enlaces.email}>{evento.contacto.email}</a>
+    </div>
+  </div>
+
+  <div class="container footer__bottom">
+    <p>© {evento.anio} · Los hermanos que coordinan para la conferencia</p>
+    <p class="footer__verse">«YO SOY EL QUE SOY» — Éxodo 3:14</p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    position: relative;
+    z-index: 2;
+    background: #04120b;
+    color: var(--on-dark);
+    padding-top: clamp(2.5rem, 5vw, 3.5rem);
+    border-top: 1px solid rgba(243, 240, 230, 0.09);
+  }
+  .footer__inner {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: clamp(1.6rem, 4vw, 3rem);
+    padding-bottom: 2.2rem;
+  }
+  .footer__brand {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
+  .footer__mark {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background: linear-gradient(160deg, var(--verde-2), var(--verde));
+    color: var(--crema);
+    flex: 0 0 auto;
+  }
+  .footer__mark svg {
+    width: 25px;
+    height: 25px;
+  }
+  .footer__title {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    letter-spacing: -0.01em;
+  }
+  .footer__sub {
+    font-size: 0.8rem;
+    color: var(--salvia);
+    margin-top: 0.15rem;
+  }
+
+  .footer__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.2rem;
+    align-content: start;
+  }
+  .footer__links a {
+    font-size: 0.85rem;
+    color: var(--on-dark-soft);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .footer__links a:hover {
+    color: var(--sol);
+  }
+
+  .footer__contact {
+    display: grid;
+    gap: 0.35rem;
+    grid-column: 2;
+  }
+  .footer__contact a {
+    font-size: 0.86rem;
+    color: var(--crema);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    justify-self: start;
+    transition: color 0.3s, border-color 0.3s;
+    word-break: break-all;
+  }
+  .footer__contact a:hover {
+    color: var(--sol);
+    border-color: var(--sol);
+  }
+
+  .footer__bottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.6rem 1.5rem;
+    padding-block: 1.4rem 2rem;
+    border-top: 1px solid rgba(243, 240, 230, 0.08);
+    font-size: 0.75rem;
+    color: #78907d;
+  }
+  .footer__verse {
+    font-family: var(--font-display);
+    font-style: italic;
+    color: var(--salvia);
+    opacity: 0.85;
+  }
+
+  @media (max-width: 720px) {
+    .footer__inner {
+      grid-template-columns: 1fr;
+    }
+    .footer__contact {
+      grid-column: 1;
+    }
+  }
+</style>

@@ -1,0 +1,148 @@
+---
+import nearTrees from '../assets/treeline-near.svg?raw';
+import { evento, enlaces } from '../data/contenido';
+---
+
+<section class="cierre" id="compartir">
+  <div class="contours" aria-hidden="true"></div>
+  <div class="cierre__glow" aria-hidden="true"></div>
+
+  <div class="container cierre__inner">
+    <p class="eyebrow reveal">Compartí la invitación</p>
+
+    <p class="cierre__quote reveal">
+      «{evento.compartir.texto}»
+    </p>
+
+    <div class="cierre__actions reveal">
+      <button
+        type="button"
+        class="btn btn--sol"
+        data-share
+        data-share-text={`${evento.titulo} · ${evento.fechas.textoAnio}`}
+      >
+        <span class="btn__icon" aria-hidden="true">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3" /><circle cx="6" cy="12" r="3" /><circle cx="18" cy="19" r="3" /><path d="m8.6 10.6 6.8-4M8.6 13.4l6.8 4" /></svg>
+        </span>
+        Compartir la invitación
+      </button>
+
+      <a class="btn btn--ghost" href={enlaces.whatsapp} target="_blank" rel="noopener">
+        Escribir por WhatsApp
+        <span class="btn__icon" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+        </span>
+      </a>
+    </div>
+
+    <div class="cierre__firma reveal">
+      <p class="cierre__firma-line">{evento.compartir.firma}</p>
+      <p class="cierre__firma-name">{evento.compartir.firmaDetalle}</p>
+    </div>
+  </div>
+
+  <div class="cierre__trees" aria-hidden="true">
+    <Fragment set:html={nearTrees} />
+  </div>
+</section>
+
+<style>
+  .cierre {
+    position: relative;
+    padding-top: clamp(4.5rem, 9vw, 8rem);
+    padding-bottom: clamp(9rem, 18vw, 15rem);
+    background: linear-gradient(180deg, var(--noche) 0%, #0a2015 60%, #0d2a1b 100%);
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .cierre__glow {
+    position: absolute;
+    left: 50%;
+    top: 6%;
+    width: min(760px, 90vw);
+    height: min(760px, 90vw);
+    transform: translateX(-50%);
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(234, 181, 77, 0.13), transparent 62%);
+    filter: blur(20px);
+    pointer-events: none;
+  }
+
+  .cierre__inner {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    justify-items: center;
+    text-align: center;
+    gap: 1.6rem;
+  }
+  .cierre__inner .eyebrow {
+    justify-content: center;
+    color: var(--sol);
+  }
+
+  .cierre__quote {
+    max-width: 20ch;
+    font-family: var(--font-display);
+    font-size: clamp(1.85rem, 4.6vw, 3.6rem);
+    font-weight: 500;
+    line-height: 1.14;
+    letter-spacing: -0.03em;
+    color: var(--crema);
+    text-wrap: balance;
+  }
+
+  .cierre__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 0.6rem;
+  }
+
+  .cierre__firma {
+    display: grid;
+    gap: 0.15rem;
+    margin-top: 1.4rem;
+    padding-top: 1.4rem;
+    border-top: 1px solid rgba(243, 240, 230, 0.14);
+    min-width: min(100%, 280px);
+  }
+  .cierre__firma-line {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--sol);
+  }
+  .cierre__firma-name {
+    font-size: 0.84rem;
+    letter-spacing: 0.02em;
+    color: var(--on-dark-soft);
+  }
+
+  .cierre__trees {
+    position: absolute;
+    inset: auto 0 -2px 0;
+    height: min(34vh, 300px);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .cierre__trees :global(svg) {
+    position: absolute;
+    bottom: 0;
+    left: -5%;
+    width: 110%;
+    height: 100%;
+    fill: #04120b;
+    opacity: 0.9;
+  }
+
+  @media (max-width: 640px) {
+    .cierre__actions :global(.btn) {
+      width: 100%;
+    }
+    .cierre__firma {
+      margin-top: 0.8rem;
+    }
+  }
+</style>
