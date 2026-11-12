@@ -4,7 +4,7 @@ import midTrees from '../assets/treeline-mid.svg?raw';
 import nearTrees from '../assets/treeline-near.svg?raw';
 import { evento, enlaces } from '../data/contenido';
 
-const inicio = new Date(evento.inicioISO);
+const inicio = new Date(evento.finalizacionInscripcionISO);
 const yaPaso = inicio.getTime() <= Date.now();
 
 const fireflies = Array.from({ length: 20 }, (_, i) => ({
@@ -84,8 +84,8 @@ const palabras = [
     </div>
 
     {!yaPaso && (
-      <div class="countdown" data-countdown={evento.inicioISO}>
-        <span class="sr-only">Cuenta regresiva para el inicio de la conferencia</span>
+      <div class="countdown" data-countdown={evento.finalizacionInscripcionISO}>
+        <p class="countdown__title">La inscripción finaliza en</p>
         <div class="countdown__grid" aria-hidden="true">
           <div class="cd">
             <span class="cd__num" data-unit="dias">00</span>
@@ -346,6 +346,14 @@ const palabras = [
   .countdown {
     margin-top: 0.4rem;
     animation: fade-up 0.9s var(--ease) 1.15s both;
+  }
+  .countdown__title {
+    margin-bottom: 0.6rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--salvia);
   }
   .countdown__grid {
     display: inline-flex;

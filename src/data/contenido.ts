@@ -26,15 +26,16 @@ export const evento = {
 
   /** Fecha y hora de inicio en formato ISO (zona horaria de Argentina) */
   inicioISO: '2027-01-11T10:00:00-03:00',
+  finalizacionInscripcionISO: '2027-01-03T23:59:59-03:00',
 
   /** Fecha y hora de cierre (solo informativa) */
-  finISO: '2027-01-16T15:00:00-03:00',
+  finISO: '2027-01-15T15:00:00-03:00',
 
   fechas: {
     inicio: { dia: 'lunes', numero: '11', mes: 'enero', corto: 'Lunes 11' },
-    fin: { dia: 'sábado', numero: '16', mes: 'enero', corto: 'Sábado 16' },
-    texto: '11 al 16 de enero',
-    textoAnio: '11 al 16 de enero de 2027',
+    fin: { dia: 'viernes', numero: '15', mes: 'enero', corto: 'Viernes 15' },
+    texto: '11 al 15 de enero',
+    textoAnio: '11 al 15 de enero de 2027',
   },
 
   /** Horario de cada jornada */
@@ -43,25 +44,24 @@ export const evento = {
     { dia: 'Martes 12', detalle: 'Jornada completa' },
     { dia: 'Miércoles 13', detalle: 'Jornada completa' },
     { dia: 'Jueves 14', detalle: 'Jornada completa' },
-    { dia: 'Viernes 15', detalle: 'Jornada completa' },
-    { dia: 'Sábado 16', detalle: 'Cierre · 15:00' },
+    { dia: 'Viernes 15', detalle: 'Cierre · 14:00' },
   ],
   horarioNota: 'El horario detallado se comunicará a los inscriptos.',
 
   lugar: {
-    nombre: 'Quinta CFC',
-    direccion: 'Av. Otero 3400',
-    ciudad: 'Pontevedra',
+    nombre: 'Don Bosco',
+    direccion: 'Av. de Mayo 1902',
+    ciudad: 'Ramos Mejía',
     provincia: 'Buenos Aires',
-    textoCompleto: 'Av. Otero 3400, Pontevedra, Buenos Aires',
+    textoCompleto: 'Av. de Mayo 1902, Ramos Mejía, Buenos Aires',
   },
 
   /** Búsqueda usada por el mapa embebido */
-  mapaQuery: 'Quinta CFC, Av. Otero 3400, Pontevedra, Buenos Aires, Argentina',
+  mapaQuery: 'Don Bosco, Av. de Mayo 1902, B1704 Ramos Mejía, Buenos Aires, Argentina',
 
   pago: {
-    precio: 250000,
-    precioTexto: '$ 250.000',
+    precio: 260000,
+    precioTexto: '$ 260.000',
     // incluye: 'Alojamiento, comidas y bosquejos',
     recargo: 10000,
     recargoTexto: '+ $ 10.000',
@@ -175,8 +175,7 @@ export const enlaces = {
   email: `mailto:${evento.contacto.email}?subject=${encodeURIComponent(
     'Inscripción conferencia de jóvenes',
   )}`,
-  mapa: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(evento.mapaQuery)}`,
-  mapaEmbed: `https://maps.google.com/maps?q=${encodeURIComponent(
-    evento.mapaQuery,
-  )}&z=14&output=embed`,
+  mapa: `https://www.google.com/maps?client=ms-android-motorola-rvo3&sca_esv=e3485cb5c7d81e9c&hl=es-US&cs=1&output=search&q=Casa+De+Retiro+Domingo+Savio&source=lnms&fbs=ACAhTvz8IPjCPxG1iWSJgYnQu_fVIzk7TIz7-TOER5Rxm-_UXBae6ARxsuGy_sgM4sboOmsBDVZq2tiAO8bhY2OaxHpGE6Mz4n9E0AgGgQZCmnz0ym7kVvaxWPxF2dBYGpmkV2oMQdMudFmU_CbYlRNjJbHlr2n3s6poaMFqm8vp9mC3YSyva_IGFg2OuGTphWU2qreG_4Invmhvi1yxQFZqc4qEIToqKQ&entry=mc&ved=1t:200715&ictx=111`,
+  mapaEmbed:
+    'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3281.721920587829!2d-58.5573180101768!3d-34.66172508916139!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcc7d68b1b28d9%3A0xc6f12bc83a571f0!2sCasa%20De%20Retiro%20Domingo%20Savio!5e0!3m2!1ses-419!2sar!4v1794489946107!5m2!1ses-419!2sar',
 };

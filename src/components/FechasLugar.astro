@@ -38,7 +38,7 @@ const ultimaComida = evento.comidas.fin.charAt(0).toLowerCase() + evento.comidas
             src={enlaces.mapaEmbed}
             title={`Mapa de ${evento.lugar.nombre} en ${evento.lugar.ciudad}`}
             loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
+            referrerpolicy="strict-origin-when-cross-origin"
             allowfullscreen
           ></iframe>
           <div class="map-card__veil" aria-hidden="true"></div>
