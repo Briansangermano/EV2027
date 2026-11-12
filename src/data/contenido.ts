@@ -163,8 +163,8 @@ export const evento = {
   compartir: {
     texto:
       'Les solicitamos que compartan esta invitación, conforme a la guía del Señor, en todo Su Cuerpo.',
-    firma: 'En Cristo,',
-    firmaDetalle: 'Los hermanos que coordinan para la conferencia',
+    // firma: 'En Cristo,',
+    // firmaDetalle: 'Los hermanos que coordinan para la conferencia',
   },
 } as const;
 
