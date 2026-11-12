@@ -9,10 +9,10 @@ interface Props {
 
 const {
   title = `${evento.titulo} · ${evento.etiqueta} ${evento.anio}`,
-  description = `${evento.antetitulo}. ${evento.fechas.textoAnio} en ${evento.lugar.nombre}, ${evento.lugar.ciudad}. Inscripción hasta el ${evento.inscripcion.limite}.`,
+  description = `${evento.titulo}. ${evento.fechas.textoAnio} en ${evento.lugar.nombre}, ${evento.lugar.ciudad}. Inscripción hasta el ${evento.inscripcion.limite}.`,
 } = Astro.props;
 
-const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://conferencia-jovenes.netlify.app');
+const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://ev2027.com');
 ---
 
 <!doctype html>

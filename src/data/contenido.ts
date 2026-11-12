@@ -53,11 +53,11 @@ export const evento = {
     direccion: 'Av. de Mayo 1902',
     ciudad: 'Ramos Mejía',
     provincia: 'Buenos Aires',
-    textoCompleto: 'Av. de Mayo 1902, Ramos Mejía, Buenos Aires',
+    textoCompleto: 'Av. de Mayo 1902, Ramos Mejía, La matanza, Buenos Aires',
   },
 
   /** Búsqueda usada por el mapa embebido */
-  mapaQuery: 'Don Bosco, Av. de Mayo 1902, B1704 Ramos Mejía, Buenos Aires, Argentina',
+  mapaQuery: 'Don Bosco, Av. de Mayo 1902, B1704 Ramos Mejía, La matanza, Buenos Aires, Argentina',
 
   pago: {
     precio: 260000,
@@ -87,6 +87,7 @@ export const evento = {
       'San Miguel',
       'Santa Fe',
       'Uruguay',
+      'Nueva Zelanda',
     ],
     localidadesNota: 'Comunicate con el encargado de las inscripciones de tu localidad.',
     otrasNota: 'Si sos de otra localidad, escribinos y te damos las instrucciones.',
