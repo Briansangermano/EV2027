@@ -99,7 +99,7 @@ const svg = (inner: string) =>
     top: -380px;
     transform: translateX(-50%);
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(234, 181, 77, 0.1), transparent 66%);
+    background: radial-gradient(circle, color-mix(in srgb, var(--sol) 10%, transparent), transparent 66%);
     pointer-events: none;
   }
 
@@ -113,7 +113,7 @@ const svg = (inner: string) =>
     left: 12.5%;
     right: 12.5%;
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(157, 184, 154, 0.35), rgba(157, 184, 154, 0.35), transparent);
+    background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--salvia) 35%, transparent), color-mix(in srgb, var(--salvia) 35%, transparent), transparent);
   }
   .meals {
     position: relative;
@@ -134,7 +134,7 @@ const svg = (inner: string) =>
     height: 76px;
     border-radius: 50%;
     background: linear-gradient(160deg, var(--musgo-2), var(--noche-2));
-    border: 1px solid rgba(234, 181, 77, 0.22);
+    border: 1px solid color-mix(in srgb, var(--sol) 22%, transparent);
     color: var(--sol);
     box-shadow: 0 0 0 8px var(--noche), 0 18px 30px -18px rgba(0, 0, 0, 0.7);
     transition: transform 0.5s var(--ease), border-color 0.4s, background-color 0.4s;
@@ -145,7 +145,7 @@ const svg = (inner: string) =>
   }
   .meals li:hover .meals__dot {
     transform: translateY(-5px) scale(1.04);
-    border-color: rgba(234, 181, 77, 0.55);
+    border-color: color-mix(in srgb, var(--sol) 55%, transparent);
   }
   .meals__name {
     font-family: var(--font-display);
@@ -164,7 +164,7 @@ const svg = (inner: string) =>
     padding: clamp(1.2rem, 3vw, 1.8rem) clamp(1.4rem, 4vw, 2.6rem);
     border-radius: var(--r-lg);
     background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(157, 184, 154, 0.16);
+    border: 1px solid color-mix(in srgb, var(--salvia) 16%, transparent);
   }
   .rango__item {
     display: grid;
@@ -188,7 +188,7 @@ const svg = (inner: string) =>
   }
   .rango__hint {
     font-size: 0.75rem;
-    color: #8fa693;
+    color: var(--salvia-mute);
   }
   .rango__arrow {
     color: var(--sol);
@@ -212,11 +212,11 @@ const svg = (inner: string) =>
     padding: clamp(1.2rem, 2.6vw, 1.6rem);
     border-radius: var(--r-md);
     background: rgba(255, 255, 255, 0.035);
-    border: 1px solid rgba(157, 184, 154, 0.14);
+    border: 1px solid color-mix(in srgb, var(--salvia) 14%, transparent);
     transition: border-color 0.4s, background-color 0.4s;
   }
   .aviso:hover {
-    border-color: rgba(234, 181, 77, 0.28);
+    border-color: color-mix(in srgb, var(--sol) 28%, transparent);
     background: rgba(255, 255, 255, 0.05);
   }
   .aviso__icon {
@@ -226,7 +226,7 @@ const svg = (inner: string) =>
     width: 42px;
     height: 42px;
     border-radius: 12px;
-    background: rgba(234, 181, 77, 0.1);
+    background: color-mix(in srgb, var(--sol) 10%, transparent);
     color: var(--sol);
   }
   .aviso__icon svg {

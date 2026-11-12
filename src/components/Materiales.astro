@@ -63,7 +63,7 @@ const svg = (name: string) =>
     right: -200px;
     top: -220px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(234, 181, 77, 0.09), transparent 65%);
+    background: radial-gradient(circle, color-mix(in srgb, var(--sol) 9%, transparent), transparent 65%);
     pointer-events: none;
   }
 
@@ -109,7 +109,7 @@ const svg = (name: string) =>
     gap: 0.55rem;
     padding: 1.3rem 1.2rem 1.4rem;
     border-radius: var(--r-md);
-    border: 1px solid rgba(157, 184, 154, 0.16);
+    border: 1px solid color-mix(in srgb, var(--salvia) 16%, transparent);
     background: rgba(255, 255, 255, 0.028);
     overflow: hidden;
     transition: transform 0.5s var(--ease), border-color 0.5s var(--ease), background-color 0.5s var(--ease);
@@ -118,14 +118,14 @@ const svg = (name: string) =>
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(220px circle at var(--sx, 50%) var(--sy, 30%), rgba(234, 181, 77, 0.13), transparent 62%);
+    background: radial-gradient(220px circle at var(--sx, 50%) var(--sy, 30%), color-mix(in srgb, var(--sol) 13%, transparent), transparent 62%);
     opacity: 0;
     transition: opacity 0.45s var(--ease);
     pointer-events: none;
   }
   .mat:hover {
     transform: translateY(-5px);
-    border-color: rgba(234, 181, 77, 0.32);
+    border-color: color-mix(in srgb, var(--sol) 32%, transparent);
     background: rgba(255, 255, 255, 0.05);
   }
   .mat:hover::after {
@@ -144,8 +144,8 @@ const svg = (name: string) =>
     width: 46px;
     height: 46px;
     border-radius: 13px;
-    background: rgba(234, 181, 77, 0.09);
-    border: 1px solid rgba(234, 181, 77, 0.16);
+    background: color-mix(in srgb, var(--sol) 9%, transparent);
+    border: 1px solid color-mix(in srgb, var(--sol) 16%, transparent);
     color: var(--sol);
     margin: 0.2rem 0 0.3rem;
     transition: transform 0.5s var(--ease), background-color 0.4s;
@@ -156,7 +156,7 @@ const svg = (name: string) =>
   }
   .mat:hover .mat__icon {
     transform: translateY(-3px) rotate(-3deg);
-    background: rgba(234, 181, 77, 0.16);
+    background: color-mix(in srgb, var(--sol) 16%, transparent);
   }
   .mat__name {
     font-family: var(--font-display);
@@ -167,7 +167,7 @@ const svg = (name: string) =>
   }
   .mat__detail {
     font-size: 0.78rem;
-    color: #8fa693;
+    color: var(--salvia-mute);
     line-height: 1.45;
   }
   .mat__check {
@@ -179,7 +179,7 @@ const svg = (name: string) =>
     width: 22px;
     height: 22px;
     border-radius: 50%;
-    border: 1px solid rgba(157, 184, 154, 0.25);
+    border: 1px solid color-mix(in srgb, var(--salvia) 25%, transparent);
     color: var(--sol);
     opacity: 0.5;
     transition: opacity 0.4s, background-color 0.4s, border-color 0.4s, transform 0.4s var(--ease);
@@ -191,8 +191,8 @@ const svg = (name: string) =>
   .mat:hover .mat__check {
     opacity: 1;
     transform: scale(1.08);
-    background: rgba(234, 181, 77, 0.16);
-    border-color: rgba(234, 181, 77, 0.4);
+    background: color-mix(in srgb, var(--sol) 16%, transparent);
+    border-color: color-mix(in srgb, var(--sol) 40%, transparent);
   }
 
   @media (max-width: 1000px) {

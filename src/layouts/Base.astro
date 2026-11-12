@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import { evento } from '../data/contenido';
+import { temaCSS, themeColor } from '../data/tema';
 
 interface Props {
   title?: string;
@@ -23,7 +24,8 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://ev2027.com'
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical.href} />
-    <meta name="theme-color" content="#07160E" />
+    <meta name="theme-color" content={themeColor} />
+    <style is:inline set:html={temaCSS()}></style>
     <meta name="color-scheme" content="light" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 

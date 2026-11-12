@@ -151,7 +151,7 @@ const palabras = [
     position: absolute;
     inset: 0;
     z-index: -1;
-    background: linear-gradient(180deg, #07160e 0%, #0a2015 45%, #0c2619 100%);
+    background: linear-gradient(180deg, var(--noche) 0%, var(--noche-3) 45%, var(--noche-4) 100%);
   }
   .hero__glow {
     position: absolute;
@@ -167,7 +167,7 @@ const palabras = [
     left: 50%;
     top: 8%;
     transform: translateX(-50%);
-    background: radial-gradient(circle, rgba(234, 181, 77, 0.16), transparent 65%);
+    background: radial-gradient(circle, color-mix(in srgb, var(--sol) 16%, transparent), transparent 65%);
     animation: glow-pulse 11s ease-in-out infinite;
   }
   .hero__glow--cool {
@@ -177,7 +177,7 @@ const palabras = [
     max-height: 880px;
     right: -12%;
     bottom: -10%;
-    background: radial-gradient(circle, rgba(62, 122, 79, 0.24), transparent 66%);
+    background: radial-gradient(circle, color-mix(in srgb, var(--verde-2) 24%, transparent), transparent 66%);
     animation: drift 26s ease-in-out infinite alternate;
   }
   .hero__contours {
@@ -198,7 +198,7 @@ const palabras = [
     height: var(--size);
     border-radius: 50%;
     background: var(--sol-2);
-    box-shadow: 0 0 8px 2px rgba(234, 181, 77, 0.45);
+    box-shadow: 0 0 8px 2px color-mix(in srgb, var(--sol) 45%, transparent);
     opacity: 0;
     animation: firefly var(--dur) ease-in-out var(--delay) infinite;
   }
@@ -240,15 +240,15 @@ const palabras = [
     will-change: transform;
   }
   .tl-wrap--far :global(svg) {
-    fill: #123c27;
+    fill: var(--montana-1);
     opacity: 0.55;
   }
   .tl-wrap--mid :global(svg) {
-    fill: #0c2b1b;
+    fill: var(--montana-2);
     opacity: 0.9;
   }
   .tl-wrap--near :global(svg) {
-    fill: #061710;
+    fill: var(--montana-3);
   }
 
   /* --- Contenido --- */
@@ -361,7 +361,7 @@ const palabras = [
     gap: 0.5rem;
     padding: 0.55rem 0.9rem;
     border-radius: 18px;
-    border: 1px solid rgba(157, 184, 154, 0.18);
+    border: 1px solid color-mix(in srgb, var(--salvia) 18%, transparent);
     background: rgba(255, 255, 255, 0.035);
     backdrop-filter: blur(6px);
   }

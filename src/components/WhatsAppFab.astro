@@ -20,9 +20,9 @@ import { enlaces } from '../data/contenido';
     width: 56px;
     height: 56px;
     border-radius: 50%;
-    background: #25d366;
-    color: #04310f;
-    box-shadow: 0 14px 30px -10px rgba(37, 211, 102, 0.65);
+    background: var(--whatsapp);
+    color: var(--on-whatsapp);
+    box-shadow: 0 14px 30px -10px color-mix(in srgb, var(--whatsapp) 65%, transparent);
     transition: transform 0.4s var(--ease), box-shadow 0.4s;
   }
   .fab svg {
@@ -38,7 +38,7 @@ import { enlaces } from '../data/contenido';
     position: absolute;
     inset: 0;
     border-radius: 50%;
-    border: 1px solid rgba(37, 211, 102, 0.55);
+    border: 1px solid color-mix(in srgb, var(--whatsapp) 55%, transparent);
     animation: fab-pulse 2.8s ease-out infinite;
   }
   @keyframes fab-pulse {

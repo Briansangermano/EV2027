@@ -26,51 +26,17 @@
 }
 
 /* ---------- Tokens ---------- */
+/*
+ * Colores, tipografías, espaciado y radios se definen en
+ * src/data/tema.ts y se inyectan como variables CSS en el <head>.
+ * Acá quedan solo los tokens derivados.
+ */
 :root {
-  /* Paleta bosque */
-  --noche: #07160E;
-  --noche-2: #0B2116;
-  --musgo: #12301F;
-  --musgo-2: #1A3F29;
-  --verde: #2C5B3C;
-  --verde-2: #3E7A4F;
-  --salvia: #9DB89A;
-  --crema: #F7F2E7;
-  --crema-2: #EFE7D5;
-  --arena: #E7DCC4;
-  --corteza: #6E5138;
-  --sol: #EAB54D;
-  --sol-2: #F6D27C;
-
-  /* Texto */
-  --ink: #10241A;
-  --ink-soft: #40584A;
-  --ink-mute: #6B7F70;
   --paper: var(--crema);
-  --on-dark: #F3F0E6;
-  --on-dark-soft: #B9CCB9;
-
-  /* Tipografía */
-  --font-display: 'Fraunces', 'Iowan Old Style', Georgia, serif;
-  --font-body: 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
-
-  --fs-hero: clamp(2.7rem, 7vw, 6rem);
-  --fs-h2: clamp(1.95rem, 4.3vw, 3.4rem);
-  --fs-h3: clamp(1.15rem, 1.7vw, 1.4rem);
-  --fs-body: clamp(1rem, 0.96rem + 0.2vw, 1.08rem);
-  --fs-small: 0.875rem;
-
-  /* Espaciado */
-  --container: 1180px;
-  --gutter: clamp(1.15rem, 4vw, 2.5rem);
-  --section-y: clamp(4.5rem, 9vw, 8.5rem);
 
   /* Formas y sombras */
-  --r-lg: 28px;
-  --r-md: 20px;
-  --r-sm: 14px;
-  --shadow-soft: 0 1px 2px rgba(7, 22, 14, 0.04), 0 24px 48px -28px rgba(7, 22, 14, 0.22);
-  --shadow-lift: 0 2px 4px rgba(7, 22, 14, 0.05), 0 34px 60px -28px rgba(7, 22, 14, 0.3);
+  --shadow-soft: 0 1px 2px color-mix(in srgb, var(--noche) 4%, transparent), 0 24px 48px -28px color-mix(in srgb, var(--noche) 22%, transparent);
+  --shadow-lift: 0 2px 4px color-mix(in srgb, var(--noche) 5%, transparent), 0 34px 60px -28px color-mix(in srgb, var(--noche) 30%, transparent);
 
   /* Movimiento */
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
@@ -212,7 +178,7 @@ strong {
   color: var(--on-dark-soft);
 }
 .section--noche .muted {
-  color: #8FA693;
+  color: var(--salvia-mute);
 }
 
 .section-head {
@@ -318,30 +284,30 @@ strong {
 
 .btn--sol {
   --btn-bg: var(--sol);
-  --btn-fg: #241705;
-  box-shadow: 0 10px 26px -12px rgba(234, 181, 77, 0.75);
+  --btn-fg: var(--on-sol);
+  box-shadow: 0 10px 26px -12px color-mix(in srgb, var(--sol) 75%, transparent);
 }
 .btn--sol:hover {
   --btn-bg: var(--sol-2);
-  box-shadow: 0 18px 34px -14px rgba(234, 181, 77, 0.8);
+  box-shadow: 0 18px 34px -14px color-mix(in srgb, var(--sol) 80%, transparent);
 }
 .btn--ghost {
   --btn-bg: transparent;
   --btn-fg: var(--on-dark);
-  border-color: rgba(243, 240, 230, 0.28);
+  border-color: color-mix(in srgb, var(--on-dark) 28%, transparent);
 }
 .btn--ghost:hover {
-  --btn-bg: rgba(243, 240, 230, 0.08);
-  border-color: rgba(243, 240, 230, 0.5);
+  --btn-bg: color-mix(in srgb, var(--on-dark) 8%, transparent);
+  border-color: color-mix(in srgb, var(--on-dark) 50%, transparent);
 }
 .btn--outline {
   --btn-bg: transparent;
   --btn-fg: var(--ink);
-  border-color: rgba(16, 36, 26, 0.22);
+  border-color: color-mix(in srgb, var(--ink) 22%, transparent);
 }
 .btn--outline:hover {
-  --btn-bg: rgba(16, 36, 26, 0.06);
-  border-color: rgba(16, 36, 26, 0.4);
+  --btn-bg: color-mix(in srgb, var(--ink) 6%, transparent);
+  border-color: color-mix(in srgb, var(--ink) 40%, transparent);
 }
 .btn--sm {
   padding: 0.72rem 1.15rem;
@@ -351,8 +317,8 @@ strong {
 /* ---------- Tarjetas ---------- */
 .card {
   position: relative;
-  background: #fffdf7;
-  border: 1px solid rgba(16, 36, 26, 0.08);
+  background: var(--tarjeta);
+  border: 1px solid color-mix(in srgb, var(--ink) 8%, transparent);
   border-radius: var(--r-md);
   padding: clamp(1.25rem, 2.4vw, 1.75rem);
   box-shadow: var(--shadow-soft);
@@ -362,7 +328,7 @@ strong {
 }
 .card--noche {
   background: linear-gradient(165deg, var(--musgo-2), var(--noche-2));
-  border-color: rgba(157, 184, 154, 0.18);
+  border-color: color-mix(in srgb, var(--salvia) 18%, transparent);
   color: var(--on-dark);
 }
 
@@ -373,7 +339,7 @@ strong {
   gap: 0.45rem;
   padding: 0.5rem 0.9rem;
   border-radius: 999px;
-  border: 1px solid rgba(16, 36, 26, 0.14);
+  border: 1px solid color-mix(in srgb, var(--ink) 14%, transparent);
   background: rgba(255, 255, 255, 0.55);
   font-size: 0.86rem;
   font-weight: 600;
@@ -393,8 +359,8 @@ strong {
   gap: 0.5rem;
   padding: 0.4rem 0.85rem;
   border-radius: 999px;
-  background: rgba(157, 184, 154, 0.14);
-  border: 1px solid rgba(157, 184, 154, 0.24);
+  background: color-mix(in srgb, var(--salvia) 14%, transparent);
+  border: 1px solid color-mix(in srgb, var(--salvia) 24%, transparent);
   color: var(--on-dark-soft);
   font-size: 0.78rem;
   font-weight: 700;
@@ -406,7 +372,7 @@ strong {
   height: 6px;
   border-radius: 50%;
   background: var(--sol);
-  box-shadow: 0 0 0 0 rgba(234, 181, 77, 0.7);
+  box-shadow: 0 0 0 0 color-mix(in srgb, var(--sol) 70%, transparent);
   animation: pulse-dot 2.6s infinite;
 }
 
@@ -500,10 +466,10 @@ strong {
 /* Divisor orgánico */
 .rule {
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(16, 36, 26, 0.16), transparent);
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--ink) 16%, transparent), transparent);
 }
 .section--noche .rule {
-  background: linear-gradient(90deg, transparent, rgba(243, 240, 230, 0.16), transparent);
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--on-dark) 16%, transparent), transparent);
 }
 
 /* ---------- Marquee ---------- */
@@ -511,7 +477,7 @@ strong {
   position: relative;
   overflow: hidden;
   padding-block: 1.1rem;
-  border-block: 1px solid rgba(243, 240, 230, 0.14);
+  border-block: 1px solid color-mix(in srgb, var(--on-dark) 14%, transparent);
   background: var(--noche);
   color: var(--on-dark);
 }
@@ -555,7 +521,7 @@ strong {
   font-weight: 700;
   font-size: 0.88rem;
   box-shadow: 0 20px 40px -16px rgba(0, 0, 0, 0.55);
-  border: 1px solid rgba(243, 240, 230, 0.14);
+  border: 1px solid color-mix(in srgb, var(--on-dark) 14%, transparent);
   transform: translate(-50%, 140%);
   opacity: 0;
   transition: transform 0.5s var(--ease), opacity 0.4s var(--ease);
@@ -574,13 +540,13 @@ strong {
 }
 @keyframes pulse-dot {
   0% {
-    box-shadow: 0 0 0 0 rgba(234, 181, 77, 0.65);
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--sol) 65%, transparent);
   }
   70% {
-    box-shadow: 0 0 0 8px rgba(234, 181, 77, 0);
+    box-shadow: 0 0 0 8px color-mix(in srgb, var(--sol) 0%, transparent);
   }
   100% {
-    box-shadow: 0 0 0 0 rgba(234, 181, 77, 0);
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--sol) 0%, transparent);
   }
 }
 @keyframes floaty {

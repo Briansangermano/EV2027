@@ -82,7 +82,7 @@ const datos = [
     gap: 0.9rem;
     padding: 1.25rem 1.15rem;
     border-radius: 18px;
-    border: 1px solid rgba(157, 184, 154, 0.16);
+    border: 1px solid color-mix(in srgb, var(--salvia) 16%, transparent);
     background: rgba(255, 255, 255, 0.025);
     text-decoration: none;
     overflow: hidden;
@@ -92,14 +92,14 @@ const datos = [
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(240px circle at var(--sx, 50%) var(--sy, 50%), rgba(234, 181, 77, 0.12), transparent 60%);
+    background: radial-gradient(240px circle at var(--sx, 50%) var(--sy, 50%), color-mix(in srgb, var(--sol) 12%, transparent), transparent 60%);
     opacity: 0;
     transition: opacity 0.45s var(--ease);
     pointer-events: none;
   }
   .fact:hover {
     transform: translateY(-4px);
-    border-color: rgba(234, 181, 77, 0.35);
+    border-color: color-mix(in srgb, var(--sol) 35%, transparent);
     background: rgba(255, 255, 255, 0.045);
   }
   .fact:hover::after {
@@ -113,9 +113,9 @@ const datos = [
     width: 40px;
     height: 40px;
     border-radius: 12px;
-    background: rgba(234, 181, 77, 0.1);
+    background: color-mix(in srgb, var(--sol) 10%, transparent);
     color: var(--sol);
-    border: 1px solid rgba(234, 181, 77, 0.18);
+    border: 1px solid color-mix(in srgb, var(--sol) 18%, transparent);
   }
   .fact__icon svg {
     width: 21px;

@@ -40,10 +40,10 @@ import { evento, enlaces } from '../data/contenido';
   .footer {
     position: relative;
     z-index: 2;
-    background: #04120b;
+    background: var(--noche-profunda);
     color: var(--on-dark);
     padding-top: clamp(2.5rem, 5vw, 3.5rem);
-    border-top: 1px solid rgba(243, 240, 230, 0.09);
+    border-top: 1px solid color-mix(in srgb, var(--on-dark) 9%, transparent);
   }
   .footer__inner {
     display: grid;
@@ -122,9 +122,9 @@ import { evento, enlaces } from '../data/contenido';
     justify-content: center;
     gap: 0.6rem 1.5rem;
     padding-block: 1.4rem 2rem;
-    border-top: 1px solid rgba(243, 240, 230, 0.08);
+    border-top: 1px solid color-mix(in srgb, var(--on-dark) 8%, transparent);
     font-size: 0.75rem;
-    color: #78907d;
+    color: var(--footer-texto);
   }
   .footer__verse {
     font-family: var(--font-display);

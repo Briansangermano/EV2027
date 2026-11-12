@@ -75,8 +75,8 @@ import { evento } from '../data/contenido';
     gap: 0.85rem;
     padding: clamp(1.5rem, 3vw, 2.1rem);
     border-radius: var(--r-lg);
-    background: #fffdf7;
-    border: 1px solid rgba(16, 36, 26, 0.09);
+    background: var(--tarjeta);
+    border: 1px solid color-mix(in srgb, var(--ink) 9%, transparent);
     box-shadow: var(--shadow-soft);
     overflow: hidden;
   }
@@ -84,7 +84,7 @@ import { evento } from '../data/contenido';
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(260px circle at var(--sx, 50%) var(--sy, 0%), rgba(44, 91, 60, 0.08), transparent 62%);
+    background: radial-gradient(260px circle at var(--sx, 50%) var(--sy, 0%), color-mix(in srgb, var(--verde) 8%, transparent), transparent 62%);
     opacity: 0;
     transition: opacity 0.45s var(--ease);
     pointer-events: none;
@@ -105,8 +105,8 @@ import { evento } from '../data/contenido';
     letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--verde);
-    background: rgba(44, 91, 60, 0.08);
-    border: 1px solid rgba(44, 91, 60, 0.14);
+    background: color-mix(in srgb, var(--verde) 8%, transparent);
+    border: 1px solid color-mix(in srgb, var(--verde) 14%, transparent);
     padding: 0.32rem 0.7rem;
     border-radius: 999px;
   }
@@ -142,18 +142,18 @@ import { evento } from '../data/contenido';
     color: var(--ink-mute);
     padding-top: 0.85rem;
     margin-top: auto;
-    border-top: 1px dashed rgba(16, 36, 26, 0.13);
+    border-top: 1px dashed color-mix(in srgb, var(--ink) 13%, transparent);
   }
 
   .part--servidores {
     background: linear-gradient(160deg, var(--musgo-2), var(--noche)) !important;
-    border-color: rgba(157, 184, 154, 0.16);
+    border-color: color-mix(in srgb, var(--salvia) 16%, transparent);
     color: var(--on-dark);
   }
   .part--servidores .part__tag {
     color: var(--sol);
-    background: rgba(234, 181, 77, 0.1);
-    border-color: rgba(234, 181, 77, 0.24);
+    background: color-mix(in srgb, var(--sol) 10%, transparent);
+    border-color: color-mix(in srgb, var(--sol) 24%, transparent);
   }
   .part--servidores .part__icon {
     background: rgba(255, 255, 255, 0.06);
@@ -166,8 +166,8 @@ import { evento } from '../data/contenido';
     color: var(--on-dark-soft);
   }
   .part--servidores .part__note {
-    color: #8fa693;
-    border-top-color: rgba(243, 240, 230, 0.12);
+    color: var(--salvia-mute);
+    border-top-color: color-mix(in srgb, var(--on-dark) 12%, transparent);
   }
 
   /* --- No enviar --- */
@@ -175,8 +175,8 @@ import { evento } from '../data/contenido';
     margin-top: clamp(1rem, 2.4vw, 1.6rem);
     padding: clamp(1.4rem, 3vw, 2rem);
     border-radius: var(--r-lg);
-    background: #fbf3e4;
-    border: 1px solid rgba(110, 81, 56, 0.18);
+    background: var(--crema-calida);
+    border: 1px solid color-mix(in srgb, var(--corteza) 18%, transparent);
     box-shadow: var(--shadow-soft);
   }
   .noenviar__head {
@@ -191,7 +191,7 @@ import { evento } from '../data/contenido';
     width: 42px;
     height: 42px;
     border-radius: 12px;
-    background: rgba(110, 81, 56, 0.1);
+    background: color-mix(in srgb, var(--corteza) 10%, transparent);
     color: var(--corteza);
   }
   .noenviar__icon svg {
@@ -226,7 +226,7 @@ import { evento } from '../data/contenido';
     padding: 0.85rem 0.95rem;
     border-radius: var(--r-sm);
     background: rgba(255, 255, 255, 0.55);
-    border: 1px solid rgba(110, 81, 56, 0.1);
+    border: 1px solid color-mix(in srgb, var(--corteza) 10%, transparent);
   }
   .noenviar__x {
     display: grid;
@@ -235,8 +235,8 @@ import { evento } from '../data/contenido';
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background: rgba(138, 79, 42, 0.12);
-    color: #8a4f2a;
+    background: color-mix(in srgb, var(--oxido) 12%, transparent);
+    color: var(--oxido);
     margin-top: 1px;
   }
   .noenviar__x svg {

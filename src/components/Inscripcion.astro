@@ -106,7 +106,7 @@ import { evento, enlaces } from '../data/contenido';
     width: 260px;
     height: 260px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(234, 181, 77, 0.2), transparent 65%);
+    background: radial-gradient(circle, color-mix(in srgb, var(--sol) 20%, transparent), transparent 65%);
     pointer-events: none;
   }
   .deadline__label {
@@ -129,7 +129,7 @@ import { evento, enlaces } from '../data/contenido';
     display: inline-block;
     padding: 0.55rem 0.9rem;
     border-radius: 999px;
-    border: 1px solid rgba(157, 184, 154, 0.28);
+    border: 1px solid color-mix(in srgb, var(--salvia) 28%, transparent);
     font-size: 0.78rem;
     color: var(--on-dark-soft);
     white-space: nowrap;
@@ -145,8 +145,8 @@ import { evento, enlaces } from '../data/contenido';
   .localidades {
     padding: clamp(1.4rem, 3vw, 2rem);
     border-radius: var(--r-lg);
-    background: #fffdf7;
-    border: 1px solid rgba(16, 36, 26, 0.09);
+    background: var(--tarjeta);
+    border: 1px solid color-mix(in srgb, var(--ink) 9%, transparent);
     box-shadow: var(--shadow-soft);
     display: grid;
     gap: 1.4rem;
@@ -164,9 +164,9 @@ import { evento, enlaces } from '../data/contenido';
     width: 44px;
     height: 44px;
     border-radius: 13px;
-    background: rgba(44, 91, 60, 0.08);
+    background: color-mix(in srgb, var(--verde) 8%, transparent);
     color: var(--verde);
-    border: 1px solid rgba(44, 91, 60, 0.14);
+    border: 1px solid color-mix(in srgb, var(--verde) 14%, transparent);
   }
   .localidades__icon svg {
     width: 22px;
@@ -204,7 +204,7 @@ import { evento, enlaces } from '../data/contenido';
     right: -120px;
     bottom: -140px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(62, 122, 79, 0.35), transparent 65%);
+    background: radial-gradient(circle, color-mix(in srgb, var(--verde-2) 35%, transparent), transparent 65%);
     pointer-events: none;
   }
   .contacto__tag {
@@ -214,7 +214,7 @@ import { evento, enlaces } from '../data/contenido';
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--sol);
-    border: 1px solid rgba(234, 181, 77, 0.3);
+    border: 1px solid color-mix(in srgb, var(--sol) 30%, transparent);
     padding: 0.3rem 0.65rem;
     border-radius: 999px;
   }
@@ -251,7 +251,7 @@ import { evento, enlaces } from '../data/contenido';
   }
   .contacto__wa:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(234, 181, 77, 0.35);
+    box-shadow: 0 6px 18px color-mix(in srgb, var(--sol) 35%, transparent);
   }
   .contacto__wa svg {
     width: 20px;
@@ -272,7 +272,7 @@ import { evento, enlaces } from '../data/contenido';
     content: '';
     height: 1px;
     flex: 1;
-    background: rgba(157, 184, 154, 0.2);
+    background: color-mix(in srgb, var(--salvia) 20%, transparent);
   }
 
   .contacto__mail {
@@ -285,7 +285,7 @@ import { evento, enlaces } from '../data/contenido';
     font-size: 0.86rem;
     color: var(--crema);
     text-decoration: none;
-    border-bottom: 1px solid rgba(243, 240, 230, 0.3);
+    border-bottom: 1px solid color-mix(in srgb, var(--on-dark) 30%, transparent);
     transition: color 0.3s, border-color 0.3s;
     word-break: break-all;
   }
@@ -299,7 +299,7 @@ import { evento, enlaces } from '../data/contenido';
     width: 32px;
     height: 32px;
     border-radius: 8px;
-    border: 1px solid rgba(157, 184, 154, 0.25);
+    border: 1px solid color-mix(in srgb, var(--salvia) 25%, transparent);
     background: transparent;
     color: var(--salvia);
     cursor: pointer;

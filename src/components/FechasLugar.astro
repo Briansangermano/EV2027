@@ -95,7 +95,7 @@ const ultimaComida = evento.comidas.fin.charAt(0).toLowerCase() + evento.comidas
     right: -90px;
     top: -120px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(234, 181, 77, 0.18), transparent 65%);
+    background: radial-gradient(circle, color-mix(in srgb, var(--sol) 18%, transparent), transparent 65%);
     pointer-events: none;
   }
 
@@ -139,14 +139,14 @@ const ultimaComida = evento.comidas.fin.charAt(0).toLowerCase() + evento.comidas
   .fecha__track {
     flex: 1;
     height: 1px;
-    background: linear-gradient(90deg, rgba(157, 184, 154, 0.15), var(--salvia), rgba(157, 184, 154, 0.15));
+    background: linear-gradient(90deg, color-mix(in srgb, var(--salvia) 15%, transparent), var(--salvia), color-mix(in srgb, var(--salvia) 15%, transparent));
   }
   .fecha__dot {
     width: 6px;
     height: 6px;
     border-radius: 50%;
     background: var(--sol);
-    box-shadow: 0 0 0 4px rgba(234, 181, 77, 0.12);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--sol) 12%, transparent);
   }
 
   .fecha__aside {
@@ -155,7 +155,7 @@ const ultimaComida = evento.comidas.fin.charAt(0).toLowerCase() + evento.comidas
     justify-items: end;
     gap: 0.5rem;
     padding-left: clamp(1rem, 3vw, 2.4rem);
-    border-left: 1px solid rgba(243, 240, 230, 0.14);
+    border-left: 1px solid color-mix(in srgb, var(--on-dark) 14%, transparent);
   }
   .fecha__badge {
     font-size: 0.68rem;
@@ -186,8 +186,8 @@ const ultimaComida = evento.comidas.fin.charAt(0).toLowerCase() + evento.comidas
     flex-direction: column;
     border-radius: var(--r-lg);
     overflow: hidden;
-    background: #fffdf7;
-    border: 1px solid rgba(16, 36, 26, 0.09);
+    background: var(--tarjeta);
+    border: 1px solid color-mix(in srgb, var(--ink) 9%, transparent);
     box-shadow: var(--shadow-soft);
   }
   .map-card__frame {
@@ -208,7 +208,7 @@ const ultimaComida = evento.comidas.fin.charAt(0).toLowerCase() + evento.comidas
     position: absolute;
     inset: 0;
     pointer-events: none;
-    background: linear-gradient(180deg, rgba(7, 22, 14, 0.1) 0%, transparent 22%, transparent 74%, rgba(7, 22, 14, 0.28) 100%);
+    background: linear-gradient(180deg, color-mix(in srgb, var(--noche) 10%, transparent) 0%, transparent 22%, transparent 74%, color-mix(in srgb, var(--noche) 28%, transparent) 100%);
   }
   .map-card__foot {
     display: flex;
@@ -216,7 +216,7 @@ const ultimaComida = evento.comidas.fin.charAt(0).toLowerCase() + evento.comidas
     justify-content: space-between;
     gap: 1rem;
     padding: 1.1rem 1.3rem;
-    background: #fffdf7;
+    background: var(--tarjeta);
   }
   .map-card__name {
     font-family: var(--font-display);
@@ -235,8 +235,8 @@ const ultimaComida = evento.comidas.fin.charAt(0).toLowerCase() + evento.comidas
     gap: 1.2rem;
     padding: clamp(1.4rem, 3vw, 2rem);
     border-radius: var(--r-lg);
-    background: #fffdf7;
-    border: 1px solid rgba(16, 36, 26, 0.09);
+    background: var(--tarjeta);
+    border: 1px solid color-mix(in srgb, var(--ink) 9%, transparent);
     box-shadow: var(--shadow-soft);
   }
   .horario__head {
@@ -253,7 +253,7 @@ const ultimaComida = evento.comidas.fin.charAt(0).toLowerCase() + evento.comidas
     justify-content: space-between;
     gap: 1rem;
     padding: 0.85rem 0;
-    border-bottom: 1px dashed rgba(16, 36, 26, 0.13);
+    border-bottom: 1px dashed color-mix(in srgb, var(--ink) 13%, transparent);
   }
   .horario__list li:last-child {
     border-bottom: 0;
@@ -321,7 +321,7 @@ const ultimaComida = evento.comidas.fin.charAt(0).toLowerCase() + evento.comidas
       padding-left: 0;
       border-left: 0;
       padding-top: 1.2rem;
-      border-top: 1px solid rgba(243, 240, 230, 0.14);
+      border-top: 1px solid color-mix(in srgb, var(--on-dark) 14%, transparent);
       width: 100%;
     }
     .fecha {
