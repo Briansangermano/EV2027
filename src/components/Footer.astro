@@ -5,10 +5,7 @@ import { evento, enlaces } from '../data/contenido';
 <footer class="footer">
   <div class="container footer__inner">
     <div class="footer__brand">
-      <span class="footer__mark" aria-hidden="true">
-        <svg viewBox="0 0 32 32" fill="none">
-          <path d="M16 4l4.6 8h-2.6l3.8 6.6h-3l4 7H17v3h-2v-3h-7l4-7h-3l3.8-6.6H10L16 4z" fill="currentColor" />
-        </svg>
+      <span class="footer__mark" aria-hidden="true">EV
       </span>
       <div>
         <p class="footer__title">Escuela de la verdad</p>
@@ -66,9 +63,12 @@ import { evento, enlaces } from '../data/contenido';
     color: var(--crema);
     flex: 0 0 auto;
   }
-  .footer__mark svg {
-    width: 25px;
-    height: 25px;
+  .footer__mark {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 1.02rem;
+    letter-spacing: 0.02em;
+    line-height: 1;
   }
   .footer__title {
     font-family: var(--font-display);

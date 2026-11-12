@@ -25,10 +25,7 @@ const menu = [
 
   <div class="nav__inner container">
     <a class="nav__brand" href="#inicio" aria-label="Ir al inicio">
-      <span class="nav__mark" aria-hidden="true">
-        <svg viewBox="0 0 32 32" fill="none">
-          <path d="M16 4l4.6 8h-2.6l3.8 6.6h-3l4 7H17v3h-2v-3h-7l4-7h-3l3.8-6.6H10L16 4z" fill="currentColor" />
-        </svg>
+      <span class="nav__mark" aria-hidden="true">EV
       </span>
       <span class="nav__name">
         <strong>Escuela</strong>
@@ -143,9 +140,12 @@ const menu = [
     color: var(--crema);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
   }
-  .nav__mark svg {
-    width: 24px;
-    height: 24px;
+  .nav__mark {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 0.98rem;
+    letter-spacing: 0.02em;
+    line-height: 1;
   }
   .nav__name {
     display: grid;
