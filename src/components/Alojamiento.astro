@@ -5,8 +5,8 @@ import { evento } from '../data/contenido';
 <section class="section section--crema alojamiento" id="alojamiento">
   <div class="container">
     <div class="section-head reveal">
-      <p class="eyebrow">Alojamiento</p>
-      <h2 class="h2">Dormís en el predio, <em>traé lo tuyo</em></h2>
+      <!-- <p class="eyebrow">Alojamiento</p> -->
+      <h2 class="h2">Alojamiento</h2>
       <p class="lead">
         El predio les proveerá cama y almohada. El resto del equipaje corre por tu cuenta, así que
         armá la valija con tiempo.
@@ -14,32 +14,8 @@ import { evento } from '../data/contenido';
     </div>
 
     <div class="alo__grid">
-      <!-- Provee -->
-      <div class="provee reveal reveal--left">
-        <div class="provee__head">
-          <span class="provee__tag">El predio provee</span>
-          <p class="provee__text">No hace falta traerlo.</p>
-        </div>
-
-        <ul class="provee__list">
-          {evento.alojamiento.provee.map((item) => (
-            <li>
-              <span class="provee__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6" /><path d="M3 18h18M5.5 10V7a1.5 1.5 0 0 1 1.5-1.5h10A1.5 1.5 0 0 1 18.5 7v3" /><path d="M7 18v2M17 18v2" /></svg>
-              </span>
-              <span>{item}</span>
-            </li>
-          ))}
-        </ul>
-
-        <div class="provee__note">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M12 3v2M12 19v2M5 12H3M21 12h-2M6.3 6.3 4.9 4.9M19.1 19.1l-1.4-1.4M6.3 17.7l-1.4 1.4M19.1 4.9l-1.4 1.4" /><circle cx="12" cy="12" r="4" /></svg>
-          <p>Las noches en Pontevedra pueden refrescar: no te olvides la frazada.</p>
-        </div>
-      </div>
-
       <!-- Traer -->
-      <div class="traer reveal reveal--right">
+      <div class="traer reveal">
         <div class="traer__head">
           <span class="traer__tag">Traé en tu valija</span>
           <span class="traer__count">{String(evento.alojamiento.traer.length).padStart(2, '0')} ítems</span>
@@ -58,7 +34,7 @@ import { evento } from '../data/contenido';
 
         <p class="traer__note">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5" /><path d="M12 11v5M12 7.8v.01" /></svg>
-          ¿Dudas con el equipaje? Escribinos antes de viajar y te ayudamos.
+          ¿Dudas con el equipaje? Contactate con los servidores de tu localidad.
         </p>
       </div>
     </div>
@@ -68,13 +44,11 @@ import { evento } from '../data/contenido';
 <style>
   .alo__grid {
     display: grid;
-    grid-template-columns: 0.85fr 1.15fr;
-    gap: clamp(1rem, 2.4vw, 1.6rem);
-    align-items: stretch;
+    grid-template-columns: 1fr;
   }
 
-  /* --- Provee --- */
-  .provee {
+  /* --- Traer (estilos del antiguo box "provee") --- */
+  .traer {
     display: grid;
     align-content: start;
     gap: 1.4rem;
@@ -84,7 +58,13 @@ import { evento } from '../data/contenido';
     color: var(--on-dark);
     box-shadow: var(--shadow-lift);
   }
-  .provee__tag {
+  .traer__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .traer__tag {
     display: inline-block;
     font-size: 0.64rem;
     font-weight: 800;
@@ -94,20 +74,20 @@ import { evento } from '../data/contenido';
     border: 1px solid rgba(234, 181, 77, 0.3);
     padding: 0.32rem 0.7rem;
     border-radius: 999px;
-    margin-bottom: 0.6rem;
   }
-  .provee__text {
+  .traer__count {
     font-family: var(--font-display);
     font-size: 1.3rem;
     letter-spacing: -0.02em;
     color: var(--crema);
   }
 
-  .provee__list {
+  .traer__list {
     display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 0.6rem;
   }
-  .provee__list li {
+  .traer__list li {
     display: flex;
     align-items: center;
     gap: 0.9rem;
@@ -119,124 +99,42 @@ import { evento } from '../data/contenido';
     font-size: 0.95rem;
     color: var(--crema);
   }
-  .provee__icon {
+  .traer__box {
     display: grid;
     place-items: center;
+    flex: 0 0 auto;
     width: 34px;
     height: 34px;
     border-radius: 10px;
     background: rgba(234, 181, 77, 0.12);
     color: var(--sol);
   }
-  .provee__icon svg {
-    width: 19px;
-    height: 19px;
+  .traer__box svg {
+    width: 17px;
+    height: 17px;
   }
 
-  .provee__note {
+  .traer__note {
     display: flex;
     gap: 0.7rem;
     align-items: flex-start;
     padding-top: 1.2rem;
     border-top: 1px solid rgba(243, 240, 230, 0.12);
-  }
-  .provee__note svg {
-    flex: 0 0 auto;
-    width: 19px;
-    height: 19px;
-    color: var(--salvia);
-    margin-top: 2px;
-  }
-  .provee__note p {
     font-size: 0.84rem;
     line-height: 1.5;
     color: var(--on-dark-soft);
   }
-
-  /* --- Traer --- */
-  .traer {
-    display: flex;
-    flex-direction: column;
-    padding: clamp(1.5rem, 3vw, 2.1rem);
-    border-radius: var(--r-lg);
-    background: #fffdf7;
-    border: 1px solid rgba(16, 36, 26, 0.09);
-    box-shadow: var(--shadow-soft);
-  }
-  .traer__head {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    margin-bottom: 1.2rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px dashed rgba(16, 36, 26, 0.14);
-  }
-  .traer__tag {
-    font-size: 0.64rem;
-    font-weight: 800;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--verde);
-  }
-  .traer__count {
-    font-family: var(--font-display);
-    font-size: 0.85rem;
-    color: var(--ink-mute);
-  }
-
-  .traer__list {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.35rem 1.4rem;
-    align-content: start;
-  }
-  .traer__list li {
-    display: flex;
-    align-items: center;
-    gap: 0.65rem;
-    padding: 0.6rem 0;
-    font-size: 0.92rem;
-    color: var(--ink-soft);
-    border-bottom: 1px solid rgba(16, 36, 26, 0.06);
-  }
-  .traer__note {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.6rem;
-    margin-top: 1.4rem;
-    padding-top: 1.1rem;
-    border-top: 1px dashed rgba(16, 36, 26, 0.14);
-    font-size: 0.83rem;
-    line-height: 1.5;
-    color: var(--ink-mute);
-  }
   .traer__note svg {
     flex: 0 0 auto;
-    width: 17px;
-    height: 17px;
+    width: 19px;
+    height: 19px;
     margin-top: 2px;
-    color: var(--verde);
-  }
-  .traer__box {
-    display: grid;
-    place-items: center;
-    flex: 0 0 auto;
-    width: 20px;
-    height: 20px;
-    border-radius: 6px;
-    border: 1px solid rgba(44, 91, 60, 0.28);
-    color: var(--verde);
-    background: rgba(44, 91, 60, 0.05);
-  }
-  .traer__box svg {
-    width: 11px;
-    height: 11px;
+    color: var(--salvia);
   }
 
   @media (max-width: 900px) {
-    .alo__grid {
-      grid-template-columns: 1fr;
+    .traer__list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
   @media (max-width: 560px) {

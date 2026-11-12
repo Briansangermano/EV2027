@@ -380,12 +380,12 @@ strong {
   color: var(--ink-soft);
   transition: transform 0.35s var(--ease), background-color 0.35s, border-color 0.35s, color 0.35s;
 }
-.chip:hover {
+/* .chip:hover {
   transform: translateY(-2px);
   background: var(--noche);
   border-color: var(--noche);
   color: var(--crema);
-}
+} */
 
 .badge {
   display: inline-flex;

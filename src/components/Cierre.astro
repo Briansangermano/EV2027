@@ -11,7 +11,7 @@ import { evento, enlaces } from '../data/contenido';
     <p class="eyebrow reveal">Compartí la invitación</p>
 
     <p class="cierre__quote reveal">
-      «{evento.compartir.texto}»
+      {evento.compartir.texto}
     </p>
 
     <div class="cierre__actions reveal">
@@ -27,12 +27,12 @@ import { evento, enlaces } from '../data/contenido';
         Compartir la invitación
       </button>
 
-      <a class="btn btn--ghost" href={enlaces.whatsapp} target="_blank" rel="noopener">
+      <!-- <a class="btn btn--ghost" href={enlaces.whatsapp} target="_blank" rel="noopener">
         Escribir por WhatsApp
         <span class="btn__icon" aria-hidden="true">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
         </span>
-      </a>
+      </a> -->
     </div>
 
     <div class="cierre__firma reveal">
@@ -84,7 +84,7 @@ import { evento, enlaces } from '../data/contenido';
   .cierre__quote {
     max-width: 20ch;
     font-family: var(--font-display);
-    font-size: clamp(1.85rem, 4.6vw, 3.6rem);
+    font-size: clamp(1.85rem, 3.6vw, 3.6rem);
     font-weight: 500;
     line-height: 1.14;
     letter-spacing: -0.03em;

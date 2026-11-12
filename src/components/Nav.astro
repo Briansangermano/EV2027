@@ -2,7 +2,7 @@
 import { evento } from '../data/contenido';
 
 const enlaces = [
-  { href: '#fechas', label: 'Fechas y lugar' },
+  { href: '#fechas', label: 'Lugar' },
   { href: '#pago', label: 'Pago' },
   { href: '#inscripcion', label: 'Inscripción' },
   { href: '#info', label: 'Preparativos' },
@@ -10,7 +10,7 @@ const enlaces = [
 
 const menu = [
   { href: '#inicio', label: 'Inicio' },
-  { href: '#fechas', label: 'Fechas y lugar' },
+  { href: '#fechas', label: 'Lugar' },
   { href: '#pago', label: 'Pago' },
   { href: '#inscripcion', label: 'Inscripción' },
   { href: '#participantes', label: 'Participantes' },
@@ -31,8 +31,8 @@ const menu = [
         </svg>
       </span>
       <span class="nav__name">
-        <strong>Conferencia</strong>
-        <em>de jóvenes</em>
+        <strong>Escuela</strong>
+        <em>de la verdad</em>
       </span>
     </a>
 
@@ -40,12 +40,12 @@ const menu = [
       {enlaces.map((e) => <a href={e.href}>{e.label}</a>)}
     </nav>
 
-    <a class="btn btn--sol btn--sm nav__cta" href="#inscripcion">
-      Inscribirme
+    <!-- <a class="btn btn--sol btn--sm nav__cta" href="#inscripcion">
+      Inscripción
       <span class="btn__icon" aria-hidden="true">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
       </span>
-    </a>
+    </a> -->
 
     <button
       class="nav__toggle"
@@ -82,11 +82,19 @@ const menu = [
     inset: 0 0 auto 0;
     z-index: 100;
     color: var(--on-dark);
-    transition: background-color 0.45s var(--ease), border-color 0.45s var(--ease),
-      backdrop-filter 0.45s var(--ease);
-    border-bottom: 1px solid transparent;
   }
-  .nav.is-scrolled {
+  /* El fondo y el blur van en un pseudo-elemento: si backdrop-filter estuviera en
+     .nav, el panel móvil (position: fixed) quedaría atrapado dentro del header. */
+  .nav::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    border-bottom: 1px solid transparent;
+    transition: background-color 0.45s var(--ease), border-color 0.45s var(--ease);
+  }
+  .nav.is-scrolled::before {
     background: rgba(6, 20, 13, 0.94);
     backdrop-filter: blur(18px) saturate(150%);
     -webkit-backdrop-filter: blur(18px) saturate(150%);
@@ -95,6 +103,7 @@ const menu = [
 
   .nav__progress {
     position: absolute;
+    z-index: 3;
     inset: 0 0 auto 0;
     height: 2px;
     background: rgba(243, 240, 230, 0.06);
@@ -147,6 +156,7 @@ const menu = [
     font-size: 1.06rem;
     font-weight: 600;
     letter-spacing: -0.01em;
+    padding-bottom: 4px;
   }
   .nav__name em {
     font-family: var(--font-body);
@@ -240,9 +250,12 @@ const menu = [
     display: grid;
     align-content: center;
     gap: 2rem;
+    height: 100vh;
+    height: 100dvh;
+    overflow-y: auto;
+    overscroll-behavior: contain;
     padding: 6rem var(--gutter) 3rem;
-    background: linear-gradient(180deg, rgba(7, 22, 14, 0.97), rgba(11, 33, 22, 0.99));
-    backdrop-filter: blur(20px);
+    background: linear-gradient(180deg, #07160e, #0b2116);
     opacity: 0;
     visibility: hidden;
     transform: translateY(-12px);

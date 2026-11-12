@@ -7,19 +7,19 @@
  */
 
 /** Fecha límite de inscripción (se usa en pago e inscripción) */
-const LIMITE = 'domingo 3 de enero';
+const LIMITE = 'Domingo 3 de enero';
 const LIMITE_CORTO = '3 de enero';
 
 export const evento = {
   /** Tema principal de la conferencia */
-  titulo: 'El testimonio de Dios lo revela a Él ante Su pueblo',
+  titulo: 'Los dos espíritus: el Espíritu divino y el espíritu humano',
 
   /** Antetítulo / eje temático */
-  antetitulo: 'Aspectos cruciales de la economía de Dios presentados en Éxodo (3)',
+  // antetitulo: 'Aspectos cruciales de la economía de Dios presentados en Éxodo (3)',
 
   /** Etiqueta corta que aparece en el hero y el menú */
-  etiqueta: 'Conferencia de jóvenes',
-  referencia: 'Éxodo (3)',
+  etiqueta: 'Escuela de la verdad',
+  referencia: '2027',
 
   /** Año del evento (se usa para el countdown y el pie) */
   anio: 2027,
@@ -60,12 +60,15 @@ export const evento = {
   mapaQuery: 'Quinta CFC, Av. Otero 3400, Pontevedra, Buenos Aires, Argentina',
 
   pago: {
-    precio: 110000,
-    precioTexto: '$ 110.000',
-    incluye: 'Alojamiento, comidas y bosquejos',
-    recargo: 5000,
-    recargoTexto: '+ $ 5.000',
+    precio: 250000,
+    precioTexto: '$ 250.000',
+    // incluye: 'Alojamiento, comidas y bosquejos',
+    recargo: 10000,
+    recargoTexto: '+ $ 10.000',
     recargoDetalle: `Recargo por inscribirse después del ${LIMITE_CORTO}`,
+    libroPrecio: 8500,
+    libroTexto: '+ $ 8.500',
+    libroDetalle: 'Libro de lecciones',
     nota: 'El pago se entrega al hermano designado para recibir el dinero en tu localidad.',
   },
 

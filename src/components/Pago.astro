@@ -8,11 +8,10 @@ import { evento } from '../data/contenido';
 
   <div class="container pago__inner">
     <div class="pago__copy reveal reveal--left">
-      <p class="eyebrow">Pago</p>
-      <h2 class="h2">Una sola cuota,<br /><em>todo incluido</em></h2>
+      <!-- <p class="eyebrow">Pago</p> -->
+      <h2 class="h2">Pago</h2>
       <p class="lead">
-        El costo cubre alojamiento, comidas y los bosquejos de la conferencia. No hay pagos
-        adicionales por actividades.
+        La tasa incluye alojamiento, comidas, remera y bosquejos.
       </p>
 
       <div class="pago__como">
@@ -24,26 +23,30 @@ import { evento } from '../data/contenido';
           <p class="pago__como-text">{evento.pago.nota}</p>
         </div>
       </div>
-
-      <p class="pago__fine">
-        Guardá el comprobante y confirmá tu inscripción con el encargado de tu localidad.
-      </p>
     </div>
 
     <!-- Ticket -->
     <article class="ticket reveal reveal--right" data-spotlight>
       <div class="ticket__head">
-        <span class="ticket__label">Costo por participante</span>
-        <span class="ticket__tag">Todo incluido</span>
+        <span class="ticket__label">Tasa por participante</span>
       </div>
 
       <div class="ticket__price">
         <span class="ticket__currency">$</span>
-        <span class="ticket__amount" data-count={evento.pago.precio}>110.000</span>
+        <span class="ticket__amount" data-count={evento.pago.precio}>250.000</span>
       </div>
       <p class="ticket__includes">{evento.pago.incluye}</p>
 
       <div class="ticket__perf" aria-hidden="true"></div>
+
+      <div class="ticket__extra">
+        <div class="ticket__extra-head">
+          <span class="ticket__extra-amount">{evento.pago.libroTexto}</span>
+          <span class="ticket__extra-tag">Opcional</span>
+        </div>
+        <p class="ticket__extra-text">{evento.pago.libroDetalle}</p>
+      </div>
+
 
       <div class="ticket__extra">
         <div class="ticket__extra-head">
@@ -234,6 +237,10 @@ import { evento } from '../data/contenido';
     right: -11px;
   }
 
+  .ticket__extra {
+    margin-top: 1rem;
+  }
+
   .ticket__extra-head {
     display: flex;
     align-items: center;
@@ -259,7 +266,6 @@ import { evento } from '../data/contenido';
   .ticket__extra-text {
     font-size: 0.85rem;
     color: var(--ink-mute);
-    margin-top: 0.2rem;
   }
 
   .ticket__cta {

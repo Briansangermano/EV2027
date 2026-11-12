@@ -15,18 +15,13 @@ const fireflies = Array.from({ length: 20 }, (_, i) => ({
   size: 2 + (i % 3) * 1.3,
 }));
 
+// El título se toma de contenido.ts. Si tiene ":", lo que sigue va en cursiva y en una nueva línea.
+const [principal, secundario] = evento.titulo.split(/:\s*/, 2);
+const aPalabras = (texto: string, italic: boolean) =>
+  texto.trim().split(/\s+/).filter(Boolean).map((text, i) => ({ text, italic, br: italic && i === 0 }));
 const palabras = [
-  { text: 'El', italic: false },
-  { text: 'testimonio', italic: false },
-  { text: 'de', italic: false },
-  { text: 'Dios', italic: false },
-  { text: 'lo', italic: true, br: true },
-  { text: 'revela', italic: true },
-  { text: 'a', italic: true },
-  { text: 'Él', italic: true },
-  { text: 'ante', italic: false, br: true },
-  { text: 'Su', italic: false },
-  { text: 'pueblo', italic: false },
+  ...aPalabras(secundario ? `${principal}:` : principal, false),
+  ...(secundario ? aPalabras(secundario, true) : []),
 ];
 ---
 

@@ -22,38 +22,12 @@ const ultimaComida = evento.comidas.fin.charAt(0).toLowerCase() + evento.comidas
 <section class="section section--crema fechas" id="fechas">
   <div class="container">
     <div class="section-head reveal">
-      <p class="eyebrow">Cuándo y dónde</p>
-      <h2 class="h2">{tituloDias} días en <em>el bosque</em></h2>
+      <!-- <p class="eyebrow">Dónde</p> -->
+      <h2 class="h2">Lugar</h2>
       <p class="lead">
-        Nos reunimos para considerar el testimonio de Dios en Éxodo. Anotá las fechas y coordiná
-        tu viaje con tu localidad.
+        Anotá las fechas y coordiná
+        el viaje con tu localidad.
       </p>
-    </div>
-
-    <!-- Tarjeta de fechas -->
-    <div class="fechas-card reveal reveal--scale">
-      <div class="fecha">
-        <span class="fecha__dia">{evento.fechas.inicio.dia}</span>
-        <span class="fecha__num">{evento.fechas.inicio.numero}</span>
-        <span class="fecha__mes">{evento.fechas.inicio.mes}</span>
-      </div>
-
-      <div class="fecha__line" aria-hidden="true">
-        <span class="fecha__dot"></span>
-        <span class="fecha__track"></span>
-        <span class="fecha__dot"></span>
-      </div>
-
-      <div class="fecha">
-        <span class="fecha__dia">{evento.fechas.fin.dia}</span>
-        <span class="fecha__num">{evento.fechas.fin.numero}</span>
-        <span class="fecha__mes">{evento.fechas.fin.mes}</span>
-      </div>
-
-      <div class="fecha__aside">
-        <span class="fecha__badge">Inscripción abierta</span>
-        <span class="fecha__year">{evento.anio}</span>
-      </div>
     </div>
 
     <div class="fechas__grid">
@@ -80,33 +54,6 @@ const ultimaComida = evento.comidas.fin.charAt(0).toLowerCase() + evento.comidas
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8" /></svg>
             </span>
           </a>
-        </div>
-      </div>
-
-      <!-- Horario -->
-      <div class="horario reveal reveal--right">
-        <div class="horario__head">
-          <span class="eyebrow">Horario</span>
-          <h3 class="h3">Cómo se reparten los días</h3>
-        </div>
-
-        <ul class="horario__list">
-          {evento.horario.map((h) => (
-            <li>
-              <span class="horario__dia">{h.dia}</span>
-              <span class="horario__detalle">{h.detalle}</span>
-            </li>
-          ))}
-        </ul>
-
-        <p class="horario__nota">{evento.horarioNota}</p>
-
-        <div class="horario__llegada">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M4 17V7a2 2 0 0 1 2-2h9l5 5v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z" /><path d="M15 5v5h5" /><path d="M8 13h8M8 16h5" /></svg>
-          <p>
-            Las comidas comienzan con el <strong>{primeraComida}</strong> y terminan con el
-            <strong>{ultimaComida}</strong>.
-          </p>
         </div>
       </div>
     </div>
@@ -231,7 +178,6 @@ const ultimaComida = evento.comidas.fin.charAt(0).toLowerCase() + evento.comidas
   /* --- Grid mapa + horario --- */
   .fechas__grid {
     display: grid;
-    grid-template-columns: 1.25fr 1fr;
     gap: clamp(1rem, 2.4vw, 1.6rem);
     margin-top: clamp(1rem, 2.4vw, 1.6rem);
   }
