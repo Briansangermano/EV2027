@@ -145,7 +145,7 @@ export const evento = {
       'Se dará un menú equilibrado de carnes y verduras para el adecuado nutrimento, repartido en las cuatro comidas diarias.',
     comidas: ['Desayuno', 'Almuerzo', 'Merienda', 'Cena'],
     inicio: 'Almuerzo del lunes',
-    fin: 'Almuerzo del sábado',
+    fin: 'Almuerzo del viernes',
     avisos: [
       {
         titulo: 'Si llegás antes o te quedás después',
