@@ -368,7 +368,7 @@ function crearEnlaces(evento: Evento) {
     regulacionesPdf: '/regulaciones.pdf',
     regulacionesForm:
       'https://docs.google.com/forms/d/e/1FAIpQLSezHSsr4RokqaXN1ziN-vWGZPw0FtvVw01NJjyPuEmN5XY8kg/viewform',
-    mapa: `https://www.google.com/maps?client=ms-android-motorola-rvo3&sca_esv=e3485cb5c7d81e9c&hl=es-US&cs=1&output=search&q=Casa+De+Retiro+Domingo+Savio&source=lnms&fbs=ACAhTvz8IPjCPxG1iWSJgYnQu_fVIzk7TIz7-TOER5Rxm-_UXBae6ARxsuGy_sgM4sboOmsBDVZq2tiAO8bhY2OaxHpGE6Mz4n9E0AgGgQZCmnz0ym7kVvaxWPxF2dBYGpmkV2oMQdMudFmU_CbYlRNjJbHlr2n3s6poaMFqm8vp9mC3YSyva_IGFg2OuGTphWU2qreG_4Invmhvi1yxQFZqc4qEIToqKQ&entry=mc&ved=1t:200715&ictx=111`,
+    mapa: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent('Casa De Retiro Domingo Savio, Av. de Mayo 1902, Ramos Mejía')}`,
     mapaEmbed:
       'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3281.721920587829!2d-58.5573180101768!3d-34.66172508916139!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcc7d68b1b28d9%3A0xc6f12bc83a571f0!2sCasa%20De%20Retiro%20Domingo%20Savio!5e0!3m2!1ses-419!2sar!4v1794489946107!5m2!1ses-419!2sar',
   };

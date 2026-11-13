@@ -228,7 +228,26 @@ function initMenu() {
     document.body.classList.toggle('menu-open', open);
   });
 
-  panel.querySelectorAll('a').forEach((a) => a.addEventListener('click', close));
+  /* Enlaces del menú: el scroll se hace a mano, después de cerrar el menú.
+     Si se deja al navegador + ClientRouter, en iOS Safari el salto al #ancla ocurre
+     en el mismo instante en que se quita el overflow:hidden, y la página primero
+     vuelve arriba de todo y recién después baja a la sección. */
+  panel.querySelectorAll<HTMLAnchorElement>('a').forEach((a) =>
+    a.addEventListener('click', (event) => {
+      close();
+      const hash = a.getAttribute('href') || '';
+      const target = hash.startsWith('#') ? document.querySelector<HTMLElement>(hash) : null;
+      if (!target) return;
+      // preventDefault también evita que el ClientRouter procese el click.
+      event.preventDefault();
+      requestAnimationFrame(() =>
+        requestAnimationFrame(() => {
+          target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+          history.replaceState(history.state, '', hash);
+        }),
+      );
+    }),
+  );
 
   document.addEventListener(
     'keydown',

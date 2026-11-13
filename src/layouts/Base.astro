@@ -12,7 +12,8 @@ interface Props {
 }
 
 const {
-  title = `${evento.titulo} · ${evento.etiqueta} ${evento.anio}`,
+  // Marca primero y solo la parte principal del tema: Google corta el título cerca de los 60 caracteres.
+  title = `${evento.etiqueta} ${evento.anio} · ${evento.titulo.split(':')[0]}`,
   description = t.meta.descripcion(
     evento.titulo,
     evento.fechas.textoAnio,
@@ -25,6 +26,39 @@ const {
 const site = Astro.site ?? 'https://ev2027.com';
 const canonical = new URL(Astro.url.pathname, site);
 const alternativas = idiomas.map((l) => ({ lang: l, href: new URL(rutaIdioma(l), site).href }));
+// Datos estructurados del evento (resultado enriquecido de Google con fecha y lugar).
+const eventoLD = {
+  '@context': 'https://schema.org',
+  '@type': 'Event',
+  name: evento.titulo,
+  description,
+  inLanguage: lang,
+  url: canonical.href,
+  image: new URL('/og-image.jpg', site).href,
+  startDate: evento.inicioISO,
+  endDate: evento.finISO,
+  eventStatus: 'https://schema.org/EventScheduled',
+  eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+  location: {
+    '@type': 'Place',
+    name: evento.lugar.nombre,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: evento.lugar.direccion,
+      addressLocality: evento.lugar.ciudad,
+      addressRegion: evento.lugar.provincia,
+      addressCountry: 'AR',
+    },
+  },
+  offers: {
+    '@type': 'Offer',
+    price: evento.precio,
+    priceCurrency: 'ARS',
+    validThrough: evento.finalizacionInscripcionISO,
+    availability: 'https://schema.org/InStock',
+    url: canonical.href,
+  },
+};
 const ogLocaleAlt = idiomas.filter((l) => l !== lang).map((l) => (l === 'es' ? 'es_AR' : 'en_US'));
 ---
 
@@ -59,6 +93,8 @@ const ogLocaleAlt = idiomas.filter((l) => l !== lang).map((l) => (l === 'es' ? '
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={new URL('/og-image.jpg', canonical).href} />
+
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(eventoLD)} />
 
     <ClientRouter />
 

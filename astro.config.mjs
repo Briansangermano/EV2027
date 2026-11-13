@@ -1,11 +1,11 @@
 import { defineConfig } from 'astro/config';
-
-import cloudflare from "@astrojs/cloudflare";
+import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  // Se usa para el canonical y las imágenes de Open Graph (WhatsApp).
-  site: 'https://ev2027.com',
+  // Dominio canónico: el mismo al que redirige Vercel (www). Se usa para el
+  // canonical, hreflang, sitemap y las imágenes de Open Graph (WhatsApp).
+  site: 'https://www.ev2027.com',
 
   compressHTML: true,
 
@@ -16,9 +16,16 @@ export default defineConfig({
     routing: { prefixDefaultLocale: false },
   },
 
+  integrations: [
+    sitemap({
+      i18n: {
+        defaultLocale: 'es',
+        locales: { es: 'es-AR', en: 'en' },
+      },
+    }),
+  ],
+
   build: {
     inlineStylesheets: 'auto',
   },
-
-  adapter: cloudflare()
 });
