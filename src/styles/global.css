@@ -606,6 +606,14 @@ strong {
 }
 
 /* ---------- Movimiento reducido ---------- */
+/* Cambio de página con ClientRouter: las animaciones quedan en pausa (en su cuadro 0)
+   hasta que la página nueva se pintó; main.ts quita la clase. */
+.is-swapping *,
+.is-swapping *::before,
+.is-swapping *::after {
+  animation-play-state: paused !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

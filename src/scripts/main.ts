@@ -360,6 +360,15 @@ function init() {
 }
 
 // Al reemplazar el DOM el <html> pierde la clase 'js': reponerla antes de pintar.
-document.addEventListener('astro:after-swap', () => document.documentElement.classList.add('js'));
+// Además se pausan las animaciones de entrada hasta que la página nueva ya se pintó:
+// si no, arrancan mientras el navegador arma el DOM y se pierden los primeros cuadros.
+document.addEventListener('astro:after-swap', () => {
+  document.documentElement.classList.add('js', 'is-swapping');
+});
+document.addEventListener('astro:page-load', () => {
+  const root = document.documentElement;
+  if (!root.classList.contains('is-swapping')) return;
+  requestAnimationFrame(() => requestAnimationFrame(() => root.classList.remove('is-swapping')));
+});
 // Se dispara en la carga inicial y después de cada navegación del ClientRouter.
 document.addEventListener('astro:page-load', init);
