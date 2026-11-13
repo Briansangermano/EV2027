@@ -2,9 +2,29 @@
    Interacciones
    ============================================================ */
 
+import { navigate } from 'astro:transitions/client';
+
+/* Con ClientRouter el módulo corre una sola vez, pero el DOM se reemplaza en cada
+   navegación: todo lo que depende de la página se recalcula en init(). */
+
+/* Textos traducidos: los inyecta Base.astro desde src/i18n/ui.ts */
+let i18n: Record<string, string> = {};
+function leerI18n() {
+  try {
+    i18n = JSON.parse(document.getElementById('i18n')?.textContent || '{}');
+  } catch {
+    i18n = {};
+  }
+}
+const tr = (key: string, fallback: string) => i18n[key] || fallback;
+
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const nav = document.querySelector<HTMLElement>('[data-nav]');
-const progress = document.querySelector<HTMLElement>('[data-progress]');
+let nav: HTMLElement | null = null;
+let progress: HTMLElement | null = null;
+
+/* Listeners globales (window/document) e intervalos: se limpian al cambiar de página. */
+let pagina = new AbortController();
+const intervalos: number[] = [];
 
 /* ---------- Toast ---------- */
 let toastTimer: number | undefined;
@@ -103,7 +123,7 @@ function initCountdown() {
   };
 
   render();
-  window.setInterval(render, 1000);
+  intervalos.push(window.setInterval(render, 1000));
 }
 
 /* ---------- Contadores ---------- */
@@ -111,7 +131,7 @@ function initCounters() {
   const els = Array.from(document.querySelectorAll<HTMLElement>('[data-count]'));
   if (!els.length) return;
 
-  const nf = new Intl.NumberFormat('es-AR');
+  const nf = new Intl.NumberFormat(tr('numberLocale', 'es-AR'));
 
   const animate = (el: HTMLElement) => {
     const end = Number(el.dataset.count) || 0;
@@ -183,8 +203,8 @@ function initScroll() {
     }
   };
 
-  window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', onScroll, { passive: true });
+  window.addEventListener('scroll', onScroll, { passive: true, signal: pagina.signal });
+  window.addEventListener('resize', onScroll, { passive: true, signal: pagina.signal });
   update();
 }
 
@@ -197,22 +217,26 @@ function initMenu() {
   const close = () => {
     panel.classList.remove('is-open');
     toggle.setAttribute('aria-expanded', 'false');
-    toggle.setAttribute('aria-label', 'Abrir menú');
+    toggle.setAttribute('aria-label', tr('abrirMenu', 'Abrir menú'));
     document.body.classList.remove('menu-open');
   };
 
   toggle.addEventListener('click', () => {
     const open = panel.classList.toggle('is-open');
     toggle.setAttribute('aria-expanded', String(open));
-    toggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+    toggle.setAttribute('aria-label', open ? tr('cerrarMenu', 'Cerrar menú') : tr('abrirMenu', 'Abrir menú'));
     document.body.classList.toggle('menu-open', open);
   });
 
   panel.querySelectorAll('a').forEach((a) => a.addEventListener('click', close));
 
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') close();
-  });
+  document.addEventListener(
+    'keydown',
+    (event) => {
+      if (event.key === 'Escape') close();
+    },
+    { signal: pagina.signal },
+  );
 }
 
 /* ---------- Copiar ---------- */
@@ -235,10 +259,10 @@ async function copyText(text: string) {
 
 function initCopy() {
   document.querySelectorAll<HTMLElement>('[data-copy]').forEach((btn) => {
-    const label = btn.dataset.copyLabel || 'Copiado';
+    const label = btn.dataset.copyLabel || tr('copiado', 'Copiado');
     btn.addEventListener('click', async () => {
       const ok = await copyText(btn.dataset.copy || '');
-      toast(ok ? label : 'No se pudo copiar');
+      toast(ok ? label : tr('noCopiar', 'No se pudo copiar'));
       if (ok) {
         btn.classList.add('is-copied');
         window.setTimeout(() => btn.classList.remove('is-copied'), 1800);
@@ -265,7 +289,7 @@ function initShare() {
         return;
       }
       const ok = await copyText(window.location.href);
-      toast(ok ? 'Enlace copiado' : 'No se pudo copiar');
+      toast(ok ? tr('enlaceCopiado', 'Enlace copiado') : tr('noCopiar', 'No se pudo copiar'));
     });
   });
 }
@@ -291,12 +315,51 @@ function initGlow() {
   });
 }
 
+/* ---------- Cambio de idioma ---------- */
+function initLangSwitch() {
+  const root = document.querySelector<HTMLElement>('[data-lang-switch]');
+  if (!root) return;
+
+  root.querySelectorAll<HTMLAnchorElement>('a[data-idx]').forEach((link) => {
+    link.addEventListener('click', (event) => {
+      if (link.getAttribute('aria-current') === 'page') {
+        event.preventDefault();
+        return;
+      }
+      // Respetar ctrl/cmd + click (abrir en otra pestaña)
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.button !== 0) return;
+      event.preventDefault();
+      // Navegación sin recarga (ClientRouter): el browser mobile no vuelve a desplegar
+      // su barra de URL sobre la página mientras carga el otro idioma.
+      // Sin hash: la página nueva siempre arranca desde el inicio.
+      navigate(link.pathname);
+    });
+  });
+}
+
 /* ---------- Arranque ---------- */
-initReveal();
-initCountdown();
-initCounters();
-initScroll();
-initMenu();
-initCopy();
-initShare();
-initGlow();
+function init() {
+  pagina.abort();
+  pagina = new AbortController();
+  intervalos.splice(0).forEach((id) => window.clearInterval(id));
+
+  document.documentElement.classList.add('js');
+  leerI18n();
+  nav = document.querySelector<HTMLElement>('[data-nav]');
+  progress = document.querySelector<HTMLElement>('[data-progress]');
+
+  initReveal();
+  initCountdown();
+  initCounters();
+  initScroll();
+  initMenu();
+  initCopy();
+  initShare();
+  initGlow();
+  initLangSwitch();
+}
+
+// Al reemplazar el DOM el <html> pierde la clase 'js': reponerla antes de pintar.
+document.addEventListener('astro:after-swap', () => document.documentElement.classList.add('js'));
+// Se dispara en la carga inicial y después de cada navegación del ClientRouter.
+document.addEventListener('astro:page-load', init);

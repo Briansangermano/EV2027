@@ -1,30 +1,32 @@
 ---
-import { evento } from '../data/contenido';
+import { useIdioma } from '../i18n';
+
+const { t, evento } = useIdioma(Astro.currentLocale);
 
 const datos = [
   {
-    label: 'Fechas',
-    value: `${evento.fechas.inicio.numero} — ${evento.fechas.fin.numero} de ${evento.fechas.inicio.mes}`,
-    sub: `${evento.fechas.inicio.dia} a ${evento.fechas.fin.dia}`,
+    label: t.datos.fechas,
+    value: evento.fechas.rango,
+    sub: evento.fechas.rangoDias,
     href: '#fechas',
     icon: 'calendario',
   },
   {
-    label: 'Lugar',
+    label: t.datos.lugar,
     value: evento.lugar.nombre,
     sub: `${evento.lugar.ciudad}, ${evento.lugar.provincia}`,
     href: '#fechas',
     icon: 'pin',
   },
   {
-    label: 'Edades',
-    value: '11 a 22 años',
-    sub: 'Jóvenes · servidores 23+',
+    label: t.datos.edades,
+    value: evento.participantes.jovenes.edad,
+    sub: evento.participantes.resumen,
     href: '#participantes',
     icon: 'gente',
   },
   {
-    label: 'Tasa',
+    label: t.datos.tasa,
     value: evento.pago.precioTexto,
     href: '#pago',
     icon: 'billete',
@@ -32,7 +34,7 @@ const datos = [
 ];
 ---
 
-<section class="facts" aria-label="Datos rápidos del evento">
+<section class="facts" aria-label={t.datos.aria}>
   <div class="container">
     <div class="facts__grid" data-stagger="90">
       {datos.map((d) => (

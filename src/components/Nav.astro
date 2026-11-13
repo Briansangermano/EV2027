@@ -1,22 +1,24 @@
 ---
-import { evento } from '../data/contenido';
+import { useIdioma, idiomas, nombresIdioma, rutaIdioma } from '../i18n';
+
+const { lang, t, evento } = useIdioma(Astro.currentLocale);
 
 const enlaces = [
-  { href: '#fechas', label: 'Lugar' },
-  { href: '#pago', label: 'Pago' },
-  { href: '#inscripcion', label: 'Inscripción' },
-  { href: '#regulaciones', label: 'Regulaciones' },
-  { href: '#info', label: 'Preparativos' },
+  { href: '#fechas', label: t.nav.lugar },
+  { href: '#pago', label: t.nav.pago },
+  { href: '#inscripcion', label: t.nav.inscripcion },
+  { href: '#regulaciones', label: t.nav.regulaciones },
+  { href: '#info', label: t.nav.preparativos },
 ];
 
 const menu = [
-  { href: '#inicio', label: 'Inicio' },
-  { href: '#fechas', label: 'Lugar' },
-  { href: '#pago', label: 'Pago' },
-  { href: '#inscripcion', label: 'Inscripción' },
-  { href: '#regulaciones', label: 'Regulaciones' },
-  { href: '#participantes', label: 'Participantes' },
-  { href: '#materiales', label: 'Materiales' },
+  { href: '#inicio', label: t.nav.inicio },
+  { href: '#fechas', label: t.nav.lugar },
+  { href: '#pago', label: t.nav.pago },
+  { href: '#inscripcion', label: t.nav.inscripcion },
+  { href: '#regulaciones', label: t.nav.regulaciones },
+  { href: '#participantes', label: t.nav.participantes },
+  { href: '#materiales', label: t.nav.materiales },
 ];
 ---
 
@@ -24,16 +26,16 @@ const menu = [
   <div class="nav__progress" aria-hidden="true"><span data-progress></span></div>
 
   <div class="nav__inner container">
-    <a class="nav__brand" href="#inicio" aria-label="Ir al inicio">
+    <a class="nav__brand" href="#inicio" aria-label={t.nav.irInicio}>
       <span class="nav__mark" aria-hidden="true">EV
       </span>
       <span class="nav__name">
-        <strong>Escuela</strong>
-        <em>de la verdad</em>
+        <strong>{t.nav.marcaFuerte}</strong>
+        <em>{t.nav.marcaSub}</em>
       </span>
     </a>
 
-    <nav class="nav__links" aria-label="Secciones principales">
+    <nav class="nav__links" aria-label={t.nav.secciones}>
       {enlaces.map((e) => <a href={e.href}>{e.label}</a>)}
     </nav>
 
@@ -44,13 +46,34 @@ const menu = [
       </span>
     </a> -->
 
+    <nav
+      class="nav__lang"
+      aria-label={t.nav.cambiarIdioma}
+      data-lang-switch
+      style={`--idx:${idiomas.indexOf(lang)};--n:${idiomas.length}`}
+    >
+      <span class="nav__lang-thumb" aria-hidden="true"></span>
+      {idiomas.map((l, i) => (
+        <a
+          href={rutaIdioma(l)}
+          hreflang={l}
+          lang={l}
+          data-idx={i}
+          aria-current={l === lang ? 'page' : undefined}
+          title={nombresIdioma[l]}
+        >
+          {l.toUpperCase()}
+        </a>
+      ))}
+    </nav>
+
     <button
       class="nav__toggle"
       type="button"
       data-menu-toggle
       aria-expanded="false"
       aria-controls="menu-movil"
-      aria-label="Abrir menú"
+      aria-label={t.nav.abrirMenu}
     >
       <span></span>
       <span></span>
@@ -58,7 +81,7 @@ const menu = [
   </div>
 
   <div class="nav__panel" id="menu-movil" data-menu>
-    <nav class="nav__panel-inner" aria-label="Menú móvil">
+    <nav class="nav__panel-inner" aria-label={t.nav.menuMovil}>
       {menu.map((m, i) => (
         <a href={m.href} style={`--i:${i}`}>
           <span class="nav__panel-num">{String(i + 1).padStart(2, '0')}</span>
@@ -202,6 +225,59 @@ const menu = [
     transform: scaleX(1);
   }
 
+  /* Selector de idioma */
+  .nav__lang {
+    --pad: 3px;
+    position: relative;
+    display: inline-grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    padding: var(--pad);
+    border-radius: 999px;
+    border: 1px solid color-mix(in srgb, var(--on-dark) 18%, transparent);
+    background: color-mix(in srgb, var(--noche) 40%, transparent);
+    isolation: isolate;
+  }
+  /* Píldora detrás del idioma activo */
+  .nav__lang-thumb {
+    position: absolute;
+    z-index: -1;
+    top: var(--pad);
+    bottom: var(--pad);
+    left: var(--pad);
+    width: calc((100% - 2 * var(--pad)) / var(--n));
+    border-radius: 999px;
+    background: linear-gradient(160deg, var(--sol-2), var(--sol));
+    box-shadow: 0 4px 14px -4px color-mix(in srgb, var(--sol) 70%, transparent),
+      inset 0 1px 0 rgba(255, 255, 255, 0.35);
+    transform: translateX(calc(var(--idx) * 100%));
+  }
+  .nav__lang a {
+    min-width: 2.25rem;
+    padding: 0.4rem 0.55rem;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-align: center;
+    text-decoration: none;
+    color: var(--on-dark-soft);
+    transition: color 0.35s var(--ease), transform 0.35s var(--ease);
+  }
+  .nav__lang a:hover {
+    color: var(--crema);
+  }
+  .nav__lang a:active {
+    transform: scale(0.92);
+  }
+  .nav__lang a[aria-current='page'] {
+    color: var(--on-sol);
+  }
+  .nav__lang a:focus-visible {
+    outline: 2px solid var(--sol);
+    outline-offset: 2px;
+  }
+
   .nav__cta {
     padding: 0.7rem 1.1rem;
   }
@@ -254,7 +330,7 @@ const menu = [
     flex-direction: column;
     gap: 2rem;
     overflow-y: auto;
-    overscroll-behavior: contain;
+    overscroll-behavior: none;
     -webkit-overflow-scrolling: touch;
     padding: 6rem var(--gutter) calc(3rem + env(safe-area-inset-bottom, 0px));
     background: linear-gradient(180deg, var(--noche), var(--noche-2));
@@ -278,9 +354,11 @@ const menu = [
     display: flex;
     align-items: baseline;
     gap: 0.9rem;
-    padding: 0.55rem 0;
+    padding: 0.85rem 0;
     font-family: var(--font-display);
     font-size: clamp(1.6rem, 7vw, 2.2rem);
+    /* Sin esto hereda el line-height 1.68 del body y el panel desborda por poco */
+    line-height: 2.5rem;
     letter-spacing: -0.02em;
     text-decoration: none;
     color: var(--crema);
@@ -327,7 +405,10 @@ const menu = [
     }
   }
 
-  body.menu-open {
+  /* Bloquear el scroll de la página detrás del menú. Tiene que ir en <html>: como
+     html tiene overflow-x: clip, el overflow de body no se propaga al viewport. */
+  :global(html:has(body.menu-open)),
+  :global(body.menu-open) {
     overflow: hidden;
   }
 

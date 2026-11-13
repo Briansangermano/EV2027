@@ -2,7 +2,9 @@
 import farTrees from '../assets/treeline-far.svg?raw';
 import midTrees from '../assets/treeline-mid.svg?raw';
 import nearTrees from '../assets/treeline-near.svg?raw';
-import { evento, enlaces } from '../data/contenido';
+import { useIdioma } from '../i18n';
+
+const { t, evento, enlaces } = useIdioma(Astro.currentLocale);
 
 const inicio = new Date(evento.finalizacionInscripcionISO);
 const yaPaso = inicio.getTime() <= Date.now();
@@ -79,47 +81,47 @@ const palabras = [
       <!-- <span class="hero__meta-sep" aria-hidden="true"></span> -->
       <span class="hero__meta-item">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M12 21s7-5.2 7-11a7 7 0 1 0-14 0c0 5.8 7 11 7 11z" /><circle cx="12" cy="10" r="2.6" /></svg>
-        Argentina - Uruguay
+        {t.hero.region}
       </span>
     </div>
 
     {!yaPaso && (
       <div class="countdown" data-countdown={evento.finalizacionInscripcionISO}>
-        <p class="countdown__title">La inscripción finaliza en</p>
+        <p class="countdown__title">{t.hero.countdownTitulo}</p>
         <div class="countdown__grid" aria-hidden="true">
           <div class="cd">
             <span class="cd__num" data-unit="dias">00</span>
-            <span class="cd__label">días</span>
+            <span class="cd__label">{t.hero.dias}</span>
           </div>
           <span class="cd__sep">:</span>
           <div class="cd">
             <span class="cd__num" data-unit="horas">00</span>
-            <span class="cd__label">horas</span>
+            <span class="cd__label">{t.hero.horas}</span>
           </div>
           <span class="cd__sep">:</span>
           <div class="cd">
             <span class="cd__num" data-unit="min">00</span>
-            <span class="cd__label">min</span>
+            <span class="cd__label">{t.hero.min}</span>
           </div>
           <span class="cd__sep">:</span>
           <div class="cd">
             <span class="cd__num" data-unit="seg">00</span>
-            <span class="cd__label">seg</span>
+            <span class="cd__label">{t.hero.seg}</span>
           </div>
         </div>
-        <p class="countdown__msg" data-countdown-message hidden>La conferencia ya comenzó</p>
+        <p class="countdown__msg" data-countdown-message hidden>{t.hero.countdownFin}</p>
       </div>
     )}
 
     <div class="hero__actions">
       <a class="btn btn--sol" href="#inscripcion">
-        Quiero inscribirme
+        {t.hero.inscribirme}
         <span class="btn__icon" aria-hidden="true">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
         </span>
       </a>
       <a class="btn btn--ghost" href={enlaces.mapa} target="_blank" rel="noopener">
-        Ver ubicación
+        {t.hero.ubicacion}
         <span class="btn__icon" aria-hidden="true">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-5.2 7-11a7 7 0 1 0-14 0c0 5.8 7 11 7 11z" /><circle cx="12" cy="10" r="2.6" /></svg>
         </span>
@@ -127,8 +129,8 @@ const palabras = [
     </div>
   </div>
 
-  <a class="hero__scroll" href="#fechas" aria-label="Bajar a fechas y lugar">
-    <span>Deslizá</span>
+  <a class="hero__scroll" href="#fechas" aria-label={t.hero.bajar}>
+    <span>{t.hero.deslizar}</span>
     <span class="hero__scroll-line" aria-hidden="true"></span>
   </a>
 </section>

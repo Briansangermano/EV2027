@@ -9,6 +9,13 @@ export default defineConfig({
 
   compressHTML: true,
 
+  // Español en "/" (idioma por defecto) e inglés en "/en/".
+  i18n: {
+    locales: ['es', 'en'],
+    defaultLocale: 'es',
+    routing: { prefixDefaultLocale: false },
+  },
+
   build: {
     inlineStylesheets: 'auto',
   },

@@ -1,6 +1,8 @@
 ---
 import nearTrees from '../assets/treeline-near.svg?raw';
-import { evento, enlaces } from '../data/contenido';
+import { useIdioma } from '../i18n';
+
+const { t, evento, enlaces } = useIdioma(Astro.currentLocale);
 ---
 
 <section class="cierre" id="compartir">
@@ -8,7 +10,7 @@ import { evento, enlaces } from '../data/contenido';
   <div class="cierre__glow" aria-hidden="true"></div>
 
   <div class="container cierre__inner">
-    <p class="eyebrow reveal">Compartí la invitación</p>
+    <p class="eyebrow reveal">{t.cierre.eyebrow}</p>
 
     <p class="cierre__quote reveal">
       {evento.compartir.texto}
@@ -24,7 +26,7 @@ import { evento, enlaces } from '../data/contenido';
         <span class="btn__icon" aria-hidden="true">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3" /><circle cx="6" cy="12" r="3" /><circle cx="18" cy="19" r="3" /><path d="m8.6 10.6 6.8-4M8.6 13.4l6.8 4" /></svg>
         </span>
-        Compartir la invitación
+        {t.cierre.compartir}
       </button>
 
       <!-- <a class="btn btn--ghost" href={enlaces.whatsapp} target="_blank" rel="noopener">

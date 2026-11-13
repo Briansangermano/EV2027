@@ -1,5 +1,7 @@
 ---
-import { evento } from '../data/contenido';
+import { useIdioma } from '../i18n';
+
+const { t, evento } = useIdioma(Astro.currentLocale);
 
 const iconos: Record<string, string> = {
   biblia: '<path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v16H6.5A2.5 2.5 0 0 0 4 21.5V5.5z"/><path d="M4 18.5A2.5 2.5 0 0 1 6.5 16H19"/><path d="M12 6v7M9.5 8.5h5"/>',
@@ -21,15 +23,15 @@ const svg = (name: string) =>
     <div class="materiales__head">
       <div class="section-head reveal">
         <!-- <p class="eyebrow">Materiales para las reuniones</p> -->
-        <h2 class="h2">Materiales para <em>las reuniones</em></h2>
+        <h2 class="h2">{t.materiales.titulo} <em>{t.materiales.tituloEm}</em></h2>
         <p class="lead">
-          Prepará tu mochila con estos elementos. Los bosquejos se entregan al llegar al predio.
+          {t.materiales.lead}
         </p>
       </div>
 
       <div class="materiales__stamp reveal" aria-hidden="true">
         <span class="materiales__stamp-line"></span>
-        <span>Checklist</span>
+        <span>{t.materiales.checklist}</span>
       </div>
     </div>
 

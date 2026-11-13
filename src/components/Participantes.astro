@@ -1,12 +1,14 @@
 ---
-import { evento } from '../data/contenido';
+import { useIdioma } from '../i18n';
+
+const { t, evento } = useIdioma(Astro.currentLocale);
 ---
 
 <section class="section section--crema participantes" id="participantes">
   <div class="container">
     <div class="section-head reveal">
       <!-- <p class="eyebrow">Participantes</p> -->
-      <h2 class="h2">Participantes</h2>
+      <h2 class="h2">{t.participantes.titulo}</h2>
       <p class="lead">{evento.participantes.aviso}</p>
     </div>
 
@@ -14,25 +16,25 @@ import { evento } from '../data/contenido';
       <!-- Jóvenes -->
       <article class="part part--jovenes reveal" data-spotlight>
         <div class="part__top">
-          <span class="part__tag">Estudiantes</span>
+          <span class="part__tag">{t.participantes.estudiantes}</span>
           <!-- <span class="part__icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="3.4" /><path d="M4.5 21c0-4.1 3.4-7 7.5-7s7.5 2.9 7.5 7" /><path d="M17 9.5c1.7.4 3 1.9 3.2 3.8" /></svg>
           </span> -->
         </div>
         <p class="part__edad">{evento.participantes.jovenes.edad}</p>
         <p class="part__text">{evento.participantes.jovenes.requisito}</p>
-        <p class="part__note">Traé ganas de escuchar, servir y compartir con otros jóvenes.</p>
+        <p class="part__note">{evento.participantes.jovenes.nota}</p>
       </article>
 
       <!-- Servidores -->
       <article class="part part--servidores reveal" data-spotlight>
         <div class="part__top">
-          <span class="part__tag">Servidores</span>
+          <span class="part__tag">{t.participantes.servidores}</span>
           <!-- <span class="part__icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M3 12h3M18 12h3M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1" /><circle cx="12" cy="12" r="3.6" /></svg>
           </span> -->
         </div>
-        <p class="part__edad">23 años o más</p>
+        <p class="part__edad">{evento.participantes.servidores.edad}</p>
         <p class="part__text">{evento.participantes.servidores.texto}</p>
       </article>
     </div>
@@ -44,7 +46,7 @@ import { evento } from '../data/contenido';
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 8v5M12 16.5v.01" /><path d="M10.3 3.9 2.7 17a2 2 0 0 0 1.7 3h15.2a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z" /></svg>
         </span>
         <div>
-          <h3 class="noenviar__title">Por favor, no enviar jóvenes que:</h3>
+          <h3 class="noenviar__title">{t.participantes.noEnviar}</h3>
           <!-- <p class="noenviar__sub">Para cuidar a todos y que la conferencia funcione como debe.</p> -->
         </div>
       </div>

@@ -1,5 +1,7 @@
 ---
-import { evento } from '../data/contenido';
+import { useIdioma } from '../i18n';
+
+const { t, evento } = useIdioma(Astro.currentLocale);
 
 const frases = [
   evento.referencia,

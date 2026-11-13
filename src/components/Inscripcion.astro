@@ -1,19 +1,21 @@
 ---
-import { evento, enlaces } from '../data/contenido';
+import { useIdioma } from '../i18n';
+
+const { t, evento, enlaces } = useIdioma(Astro.currentLocale);
 ---
 
 <section class="section section--arena inscripcion" id="inscripcion">
   <div class="container">
     <div class="section-head section-head--center reveal">
       <!-- <p class="eyebrow">Inscripción</p> -->
-      <h2 class="h2">Inscripción</h2>
+      <h2 class="h2">{t.inscripcion.titulo}</h2>
       <p class="lead">{evento.inscripcion.nota}</p>
     </div>
 
     <!-- Fecha límite -->
     <div class="deadline reveal reveal--scale">
       <div class="deadline__left">
-        <span class="deadline__label">Último día de inscripción</span>
+        <span class="deadline__label">{t.inscripcion.ultimoDia}</span>
         <p class="deadline__date">{evento.inscripcion.limite}</p>
       </div>
     </div>
@@ -26,7 +28,7 @@ import { evento, enlaces } from '../data/contenido';
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V6a2 2 0 0 1 2-2h9l5 5v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z" /><path d="M8 8h5M8 12h8M8 16h6" /></svg>
           </span>
           <div>
-            <h3 class="h3">Para realizar la inscripción:</h3>
+            <h3 class="h3">{t.inscripcion.paraInscribirte}</h3>
             <p>{evento.inscripcion.localidadesNota}</p>
           </div>
         </div>
@@ -41,8 +43,8 @@ import { evento, enlaces } from '../data/contenido';
       <!-- Otras localidades / contacto -->
       <div class="contacto reveal reveal--right">
         <div class="contacto__glow" aria-hidden="true"></div>
-        <span class="contacto__tag">Otras localidades</span>
-        <h3 class="h3">¿No ves tu ciudad?</h3>
+        <span class="contacto__tag">{t.inscripcion.otras}</span>
+        <h3 class="h3">{t.inscripcion.noVes}</h3>
         <p class="contacto__text">{evento.inscripcion.otrasNota}</p>
 
         <div class="contacto__wa-row">
@@ -52,14 +54,14 @@ import { evento, enlaces } from '../data/contenido';
             href={enlaces.whatsapp}
             target="_blank"
             rel="noopener"
-            aria-label="Escribinos por WhatsApp"
-            title="Escribinos por WhatsApp"
+            aria-label={t.inscripcion.whatsapp}
+            title={t.inscripcion.whatsapp}
           >
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.6 2 2.2 6.4 2.2 11.84c0 1.74.46 3.44 1.32 4.94L2 22l5.36-1.4a9.8 9.8 0 0 0 4.68 1.19h.01c5.43 0 9.84-4.4 9.84-9.84 0-2.63-1.02-5.1-2.88-6.96A9.78 9.78 0 0 0 12.04 2zm5.7 13.9c-.24.67-1.4 1.28-1.93 1.33-.53.05-1.02.24-3.44-.72-2.9-1.14-4.72-4.13-4.86-4.32-.14-.19-1.14-1.52-1.14-2.9 0-1.38.72-2.06.98-2.34.26-.28.56-.35.75-.35.19 0 .38 0 .55.01.18.01.41-.07.64.49.24.57.81 1.97.88 2.11.07.14.12.31.02.5-.09.19-.14.31-.28.48-.14.16-.3.36-.43.48-.14.13-.29.28-.12.55.16.28.72 1.19 1.55 1.93 1.06.95 1.96 1.24 2.24 1.38.28.14.44.12.6-.07.16-.19.69-.8.87-1.08.19-.28.37-.23.63-.14.26.09 1.65.78 1.93.92.28.14.47.21.54.33.07.12.07.69-.17 1.36z" /></svg>
           </a>
         </div>
 
-        <div class="contacto__divider"><span>o</span></div>
+        <div class="contacto__divider"><span>{t.inscripcion.o}</span></div>
 
         <div class="contacto__mail">
           <a href={enlaces.email} class="contacto__mail-link">{evento.contacto.email}</a>
@@ -67,8 +69,8 @@ import { evento, enlaces } from '../data/contenido';
             type="button"
             class="contacto__copy"
             data-copy={evento.contacto.email}
-            data-copy-label="Email copiado"
-            aria-label="Copiar el email de contacto"
+            data-copy-label={t.inscripcion.emailCopiado}
+            aria-label={t.inscripcion.copiarEmail}
           >
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2.5" /><path d="M15 5.5A2.5 2.5 0 0 0 12.5 3H6a3 3 0 0 0-3 3v6.5A2.5 2.5 0 0 0 5.5 15" /></svg>
           </button>

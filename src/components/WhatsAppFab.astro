@@ -1,5 +1,7 @@
 ---
-import { enlaces } from '../data/contenido';
+import { useIdioma } from '../i18n';
+
+const { enlaces } = useIdioma(Astro.currentLocale);
 ---
 
 <!-- <a class="fab" href={enlaces.whatsapp} target="_blank" rel="noopener" aria-label="Escribinos por WhatsApp">

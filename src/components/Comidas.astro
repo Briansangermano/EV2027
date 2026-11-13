@@ -1,24 +1,24 @@
 ---
-import { evento } from '../data/contenido';
+import { useIdioma } from '../i18n';
 
-const comidas = [
+const { t, evento } = useIdioma(Astro.currentLocale);
+
+/** Íconos en orden: desayuno, almuerzo, merienda, cena. Los nombres vienen de contenido.ts */
+const iconosComidas = [
   {
-    nombre: 'Desayuno',
     icono: '<path d="M4 8h12v6a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V8z"/><path d="M16 9h2.5a2.5 2.5 0 0 1 0 5H16"/><path d="M7 3v2M11 3v2M3 22h18"/>',
   },
   {
-    nombre: 'Almuerzo',
     icono: '<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.5"/>',
   },
   {
-    nombre: 'Merienda',
     icono: '<path d="M4 10h12v3.5A5.5 5.5 0 0 1 10.5 19h-1A5.5 5.5 0 0 1 4 13.5V10z"/><path d="M16 11h2.4a2.1 2.1 0 0 1 0 4.2H16"/><path d="M7.5 3.5c0 1-1 1.2-1 2.2M11.5 3.5c0 1-1 1.2-1 2.2"/>',
   },
   {
-    nombre: 'Cena',
     icono: '<path d="M20 14.5A8 8 0 0 1 9.5 4 8.2 8.2 0 1 0 20 14.5z"/>',
   },
 ];
+const comidas = evento.comidas.comidas.map((nombre, i) => ({ nombre, icono: iconosComidas[i]?.icono ?? '' }));
 
 const svg = (inner: string) =>
   `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${inner}</svg>`;
@@ -30,7 +30,7 @@ const svg = (inner: string) =>
   <div class="container">
     <div class="section-head section-head--center reveal">
       <!-- <p class="eyebrow">Comidas</p> -->
-      <h2 class="h2">Comidas</h2>
+      <h2 class="h2">{t.comidas.titulo}</h2>
       <p class="lead">{evento.comidas.texto}</p>
     </div>
 
@@ -51,7 +51,7 @@ const svg = (inner: string) =>
 
     <div class="rango reveal">
       <div class="rango__item">
-        <span class="rango__label">Comienza</span>
+        <span class="rango__label">{t.comidas.comienza}</span>
         <span class="rango__value">{evento.comidas.inicio}</span>
         <span class="rango__hint">{evento.fechas.inicio.corto}</span>
       </div>
@@ -59,7 +59,7 @@ const svg = (inner: string) =>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16M14 6l6 6-6 6" /></svg>
       </div>
       <div class="rango__item rango__item--end">
-        <span class="rango__label">Finaliza</span>
+        <span class="rango__label">{t.comidas.finaliza}</span>
         <span class="rango__value">{evento.comidas.fin}</span>
         <span class="rango__hint">{evento.fechas.fin.corto}</span>
       </div>

@@ -1,5 +1,7 @@
 ---
-import { evento, enlaces } from '../data/contenido';
+import { useIdioma } from '../i18n';
+
+const { t, evento, enlaces } = useIdioma(Astro.currentLocale);
 ---
 
 <footer class="footer">
@@ -8,17 +10,17 @@ import { evento, enlaces } from '../data/contenido';
       <span class="footer__mark" aria-hidden="true">EV
       </span>
       <div>
-        <p class="footer__title">Escuela de la verdad</p>
+        <p class="footer__title">{t.footer.marca}</p>
         <p class="footer__sub">{evento.referencia} · {evento.fechas.textoAnio}</p>
       </div>
     </div>
 
-    <nav class="footer__links" aria-label="Enlaces del pie">
-      <a href="#fechas">Lugar</a>
-      <a href="#pago">Pago</a>
-      <a href="#inscripcion">Inscripción</a>
-      <a href="#materiales">Materiales</a>
-      <a href="#comidas">Comidas</a>
+    <nav class="footer__links" aria-label={t.footer.enlaces}>
+      <a href="#fechas">{t.nav.lugar}</a>
+      <a href="#pago">{t.nav.pago}</a>
+      <a href="#inscripcion">{t.nav.inscripcion}</a>
+      <a href="#materiales">{t.nav.materiales}</a>
+      <a href="#comidas">{t.nav.comidas}</a>
     </nav>
 
     <div class="footer__contact">

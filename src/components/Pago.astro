@@ -1,5 +1,7 @@
 ---
-import { evento } from '../data/contenido';
+import { useIdioma } from '../i18n';
+
+const { t, evento } = useIdioma(Astro.currentLocale);
 ---
 
 <section class="section section--noche pago" id="pago">
@@ -9,9 +11,9 @@ import { evento } from '../data/contenido';
   <div class="container pago__inner">
     <div class="pago__copy reveal reveal--left">
       <!-- <p class="eyebrow">Pago</p> -->
-      <h2 class="h2">Pago</h2>
+      <h2 class="h2">{t.pago.titulo}</h2>
       <p class="lead">
-        La tasa incluye alojamiento, comidas, remera y bosquejos.
+        {evento.pago.descripcion}
       </p>
 
       <div class="pago__como">
@@ -19,7 +21,7 @@ import { evento } from '../data/contenido';
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5 12 4l9 4.5-9 4.5-9-4.5z" /><path d="M3 8.5V16l9 4.5 9-4.5V8.5" /><path d="M12 13v7.5" /></svg>
         </span>
         <div>
-          <p class="pago__como-title">¿Cómo se paga?</p>
+          <p class="pago__como-title">{t.pago.comoTitulo}</p>
           <p class="pago__como-text">{evento.pago.nota}</p>
         </div>
       </div>
@@ -28,12 +30,12 @@ import { evento } from '../data/contenido';
     <!-- Ticket -->
     <article class="ticket reveal reveal--right" data-spotlight>
       <div class="ticket__head">
-        <span class="ticket__label">Tasa por participante</span>
+        <span class="ticket__label">{t.pago.tasaLabel}</span>
       </div>
 
       <div class="ticket__price">
         <span class="ticket__currency">$</span>
-        <span class="ticket__amount" data-count={evento.pago.precio}>250.000</span>
+        <span class="ticket__amount" data-count={evento.precio}>{new Intl.NumberFormat(t.js.numberLocale).format(evento.precio)}</span>
       </div>
       <p class="ticket__includes">{evento.pago.incluye}</p>
 
@@ -42,7 +44,7 @@ import { evento } from '../data/contenido';
       <div class="ticket__extra">
         <div class="ticket__extra-head">
           <span class="ticket__extra-amount">{evento.pago.libroTexto}</span>
-          <span class="ticket__extra-tag">Opcional</span>
+          <span class="ticket__extra-tag">{t.pago.opcional}</span>
         </div>
         <p class="ticket__extra-text">{evento.pago.libroDetalle}</p>
       </div>
@@ -51,13 +53,13 @@ import { evento } from '../data/contenido';
       <div class="ticket__extra">
         <div class="ticket__extra-head">
           <span class="ticket__extra-amount">{evento.pago.recargoTexto}</span>
-          <span class="ticket__extra-tag">Recargo</span>
+          <span class="ticket__extra-tag">{t.pago.recargo}</span>
         </div>
         <p class="ticket__extra-text">{evento.pago.recargoDetalle}</p>
       </div>
 
       <a class="ticket__cta" href="#inscripcion">
-        Ir a la inscripción
+        {t.pago.irInscripcion}
         <span class="btn__icon" aria-hidden="true">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
         </span>

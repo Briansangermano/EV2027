@@ -1,15 +1,16 @@
 ---
-import { evento } from '../data/contenido';
+import { useIdioma } from '../i18n';
+
+const { t, evento } = useIdioma(Astro.currentLocale);
 ---
 
 <section class="section section--crema alojamiento" id="alojamiento">
   <div class="container">
     <div class="section-head reveal">
       <!-- <p class="eyebrow">Alojamiento</p> -->
-      <h2 class="h2">Alojamiento</h2>
+      <h2 class="h2">{t.alojamiento.titulo}</h2>
       <p class="lead">
-        El predio les proveerá cama y almohada. El resto del equipaje corre por tu cuenta, así que
-        armá la valija con tiempo.
+        {t.alojamiento.lead}
       </p>
     </div>
 
@@ -17,8 +18,8 @@ import { evento } from '../data/contenido';
       <!-- Traer -->
       <div class="traer reveal">
         <div class="traer__head">
-          <span class="traer__tag">Traé en tu valija</span>
-          <span class="traer__count">{String(evento.alojamiento.traer.length).padStart(2, '0')} ítems</span>
+          <span class="traer__tag">{t.alojamiento.traer}</span>
+          <span class="traer__count">{String(evento.alojamiento.traer.length).padStart(2, '0')} {t.alojamiento.items}</span>
         </div>
 
         <ul class="traer__list">
@@ -34,7 +35,7 @@ import { evento } from '../data/contenido';
 
         <p class="traer__note">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5" /><path d="M12 11v5M12 7.8v.01" /></svg>
-          ¿Dudas con el equipaje? Contactate con los servidores de tu localidad.
+          {t.alojamiento.dudas}
         </p>
       </div>
     </div>
