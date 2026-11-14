@@ -38,7 +38,6 @@ const svg = (name: string) =>
     <ul class="mat__grid" data-stagger="90">
       {evento.materiales.map((m, i) => (
         <li class="mat reveal" data-spotlight>
-          <span class="mat__num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
           <span class="mat__icon" aria-hidden="true">
             <Fragment set:html={svg(m.icono)} />
           </span>

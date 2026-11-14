@@ -19,7 +19,6 @@ const { t, evento } = useIdioma(Astro.currentLocale);
       <div class="traer reveal">
         <div class="traer__head">
           <span class="traer__tag">{t.alojamiento.traer}</span>
-          <span class="traer__count">{String(evento.alojamiento.traer.length).padStart(2, '0')} {t.alojamiento.items}</span>
         </div>
 
         <ul class="traer__list">

@@ -27,11 +27,11 @@ const comun = {
   finISO: '2027-01-15T15:00:00-03:00',
 
   /** Búsqueda usada por el mapa embebido */
-  mapaQuery: 'Don Bosco, Av. de Mayo 1902, B1704 Ramos Mejía, La matanza, Buenos Aires, Argentina',
+  mapaQuery: 'Don Bosco, Av. de Mayo 1902, B1704 Ramos Mejía, La Matanza, Buenos Aires, Argentina',
 
   precio: 260000,
   recargo: 10000,
-  libroPrecio: 6500,
+  libroPrecio: 7000,
 
   contacto: {
     whatsapp: '5491168884108',
@@ -58,7 +58,7 @@ const lugarBase = {
   direccion: 'Av. de Mayo 1902',
   ciudad: 'Ramos Mejía',
   provincia: 'Buenos Aires',
-  textoCompleto: 'Av. de Mayo 1902, Ramos Mejía, La matanza, Buenos Aires',
+  textoCompleto: 'Av. de Mayo 1902, Ramos Mejía, La Matanza, Buenos Aires',
 };
 
 /* ───────────────────────── Español ───────────────────────── */
@@ -106,8 +106,8 @@ const es = {
     precioTexto: '$ 260.000',
     incluye: '',
     recargoTexto: '+ $ 10.000',
-    recargoDetalle: `Recargo por inscribirse después del ${LIMITE_CORTO_ES}`,
-    libroTexto: '+ $ 6.500',
+    recargoDetalle: `Por inscribirse después del ${LIMITE_CORTO_ES}`,
+    libroTexto: '+ $ 7.000',
     libroDetalle: 'Libro de lecciones',
     nota: 'El pago se entrega al hermano designado para recibir el dinero en tu localidad.',
   },
@@ -137,8 +137,8 @@ const es = {
   contacto: {
     ...comun.contacto,
     mensajeWhatsapp:
-      'Hola, quiero inscribirme a la conferencia de jóvenes de enero. ¿Me pasan los datos?',
-    asuntoEmail: 'Inscripción conferencia de jóvenes',
+      'Hola, quiero inscribirme a la Escuela de la Verdad de enero. ¿Me pasan los datos?',
+    asuntoEmail: 'Inscripción Escuela de la Verdad',
   },
 
   participantes: {
@@ -248,12 +248,12 @@ const en: Evento = {
   lugar: lugarBase,
 
   pago: {
-    descripcion: 'The fee includes lodging, meals, a T-shirt and outlines.',
+    descripcion: 'The payment includes lodging, meals, a T-shirt and outlines.',
     precioTexto: 'ARS $260,000',
     incluye: '',
     recargoTexto: '+ ARS $10,000',
-    recargoDetalle: `Late fee for registering after ${LIMITE_CORTO_EN}`,
-    libroTexto: '+ ARS $6,500',
+    recargoDetalle: `For registering after ${LIMITE_CORTO_EN}`,
+    libroTexto: '+ ARS $7,000',
     libroDetalle: 'Lesson book',
     nota: 'Payment is handed to the brother designated to receive it in your locality.',
   },
@@ -283,8 +283,8 @@ const en: Evento = {
   contacto: {
     ...comun.contacto,
     mensajeWhatsapp:
-      "Hi, I'd like to register for the January young people's conference. Could you send me the details?",
-    asuntoEmail: "Young people's conference registration",
+      "Hi, I'd like to register for the January School of Truth. Could you send me the details?",
+    asuntoEmail: "School of Truth registration",
   },
 
   participantes: {
@@ -367,7 +367,7 @@ function crearEnlaces(evento: Evento) {
     email: `mailto:${evento.contacto.email}?subject=${encodeURIComponent(evento.contacto.asuntoEmail)}`,
     regulacionesPdf: '/regulaciones.pdf',
     regulacionesForm:
-      'https://docs.google.com/forms/d/e/1FAIpQLSezHSsr4RokqaXN1ziN-vWGZPw0FtvVw01NJjyPuEmN5XY8kg/viewform',
+      'https://inscripcion-conferencias.getgrist.com/forms/34RXjSEFxoVNSieY1EVFMD/205',
     mapa: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent('Casa De Retiro Domingo Savio, Av. de Mayo 1902, Ramos Mejía')}`,
     mapaEmbed:
       'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3281.721920587829!2d-58.5573180101768!3d-34.66172508916139!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcc7d68b1b28d9%3A0xc6f12bc83a571f0!2sCasa%20De%20Retiro%20Domingo%20Savio!5e0!3m2!1ses-419!2sar!4v1794489946107!5m2!1ses-419!2sar',

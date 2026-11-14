@@ -46,7 +46,8 @@ const { t, evento } = useIdioma(Astro.currentLocale);
           <span class="ticket__extra-amount">{evento.pago.libroTexto}</span>
           <span class="ticket__extra-tag">{t.pago.opcional}</span>
         </div>
-        <p class="ticket__extra-text">{evento.pago.libroDetalle}</p>
+        <p class="ticket__extra-note ticket__extra-note--block">{t.pago.opcionalNota}</p>
+        <!-- <p class="ticket__extra-text">{evento.pago.libroDetalle}</p> -->
       </div>
 
 
@@ -55,7 +56,7 @@ const { t, evento } = useIdioma(Astro.currentLocale);
           <span class="ticket__extra-amount">{evento.pago.recargoTexto}</span>
           <span class="ticket__extra-tag">{t.pago.recargo}</span>
         </div>
-        <p class="ticket__extra-text">{evento.pago.recargoDetalle}</p>
+        <p class="ticket__extra-note ticket__extra-note--block">{evento.pago.recargoDetalle}</p>
       </div>
 
       <a class="ticket__cta" href="#inscripcion">
@@ -265,6 +266,11 @@ const { t, evento } = useIdioma(Astro.currentLocale);
     padding: 0.25rem 0.5rem;
     border-radius: 999px;
   }
+  .ticket__extra-note {
+    font-size: 0.8rem;
+    font-style: italic;
+    color: var(--ink-mute);
+  }
   .ticket__extra-text {
     font-size: 0.85rem;
     color: var(--ink-mute);
@@ -301,6 +307,13 @@ const { t, evento } = useIdioma(Astro.currentLocale);
     }
     .ticket__perf {
       margin-inline: -1.6rem;
+    }
+    .ticket__extra-note--inline {
+      display: none;
+    }
+    .ticket__extra-note--block {
+      display: block;
+      margin-top: 0.15rem;
     }
   }
 </style>
